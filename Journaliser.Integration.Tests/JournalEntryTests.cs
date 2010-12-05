@@ -48,7 +48,7 @@ namespace Journaliser.Integration.Tests
             {
                 var entry = new JournalEntry();
                 entry.Title = "test" + i.ToString();
-                var id = Repository.AddJournalEntry(entry);
+                var id = AddJournalEntry(entry);
             }
             var addEnd = DateTime.Now;
 

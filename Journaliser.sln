@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journaliser", "Journaliser\Journaliser.csproj", "{ED0B8D6D-06C1-4D19-9106-458A2A1AAC66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journaliser.Tests", "Journaliser.Tests\Journaliser.Tests.csproj", "{761FF0A5-14C0-463C-8726-68E67D3901C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{2BF41EE8-F4BC-4A55-B5D2-1F128A982945}"
+	ProjectSection(SolutionItems) = preProject
+		Dependencies\Moq.dll = Dependencies\Moq.dll
+		Dependencies\Newtonsoft.Json.dll = Dependencies\Newtonsoft.Json.dll
+		Dependencies\Raven.Abstractions.dll = Dependencies\Raven.Abstractions.dll
+		Dependencies\Raven.Client.Lightweight.dll = Dependencies\Raven.Client.Lightweight.dll
+		Dependencies\Raven.Client.Lightweight.xml = Dependencies\Raven.Client.Lightweight.xml
+		Dependencies\ScriptDependencyExtension.dll = Dependencies\ScriptDependencyExtension.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journaliser.Logic", "Journaliser.Logic\Journaliser.Logic.csproj", "{E05C904D-C921-4B94-BC0F-5A6E0C2E65D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journaliser.Integration.Tests", "Journaliser.Integration.Tests\Journaliser.Integration.Tests.csproj", "{CEA62879-D016-465A-BBF1-DC918CB1C7DD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{807A08FC-D99F-45E3-98DF-EBDCC76B5CF1}"
+	ProjectSection(SolutionItems) = preProject
+		Journaliser.vsmdi = Journaliser.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Journaliser.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED0B8D6D-06C1-4D19-9106-458A2A1AAC66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED0B8D6D-06C1-4D19-9106-458A2A1AAC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED0B8D6D-06C1-4D19-9106-458A2A1AAC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED0B8D6D-06C1-4D19-9106-458A2A1AAC66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{761FF0A5-14C0-463C-8726-68E67D3901C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{761FF0A5-14C0-463C-8726-68E67D3901C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{761FF0A5-14C0-463C-8726-68E67D3901C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{761FF0A5-14C0-463C-8726-68E67D3901C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E05C904D-C921-4B94-BC0F-5A6E0C2E65D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E05C904D-C921-4B94-BC0F-5A6E0C2E65D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E05C904D-C921-4B94-BC0F-5A6E0C2E65D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E05C904D-C921-4B94-BC0F-5A6E0C2E65D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA62879-D016-465A-BBF1-DC918CB1C7DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA62879-D016-465A-BBF1-DC918CB1C7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA62879-D016-465A-BBF1-DC918CB1C7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA62879-D016-465A-BBF1-DC918CB1C7DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

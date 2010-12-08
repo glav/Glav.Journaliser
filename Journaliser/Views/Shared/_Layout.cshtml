@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html>
+<html manifest="cache.manifest">
 <head>
     <title>@View.Title</title>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-    @ScriptDependencyExtension.ScriptHelper.RequiresScript("jQuery-validate-unobtrusive");
+    @ScriptDependencyExtension.ScriptHelper.RequiresScripts("jQuery-validate-unobtrusive","Main")
 </head>
 
 <body>
@@ -11,11 +11,17 @@
 
         <div id="header">
             <div id="title">
-                <h1>My MVC Application</h1>
+                <h1>The Journaliser</h1>
+                <p>The online and offline personal journal</p>
             </div>
 
-            <div id="logindisplay">
-                @Html.Partial("_LogOnPartial")
+            <div id="status-links">
+                <div id="logindisplay">
+                    @Html.Partial("_LogOnPartial")
+                </div>
+                <div id="onlineStatus">
+                    <span class="status-online">Online</span>
+                </div>
             </div>
 
             <div id="menucontainer">
@@ -26,6 +32,7 @@
                 </ul>
 
             </div>
+
         </div>
 
         <div id="main">

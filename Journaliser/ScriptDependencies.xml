@@ -27,4 +27,33 @@
     </RequiredDependencies>
   </Dependency>
 
+  <Dependency Name="Main" Type="js">
+    <ScriptFile>~/Scripts/HTML5Support/Main.js</ScriptFile>
+    <RequiredDependencies>
+      <Name>jquery</Name>
+      <Name>NetworkStatus</Name>
+      <Name>DataLayer</Name>
+      <Name>Runtime</Name>
+    </RequiredDependencies>
+  </Dependency>
+
+  <Dependency Name="NetworkStatus" Type="js">
+    <ScriptFile>~/Scripts/HTML5Support/NetworkStatus.js</ScriptFile>
+    <RequiredDependencies>
+      <Name>jquery</Name>
+      <Name>Runtime</Name>
+    </RequiredDependencies>
+  </Dependency>
+  
+  <Dependency Name="DataLayer" Type="js">
+    <ScriptFile>~/Scripts/HTML5Support/DataLayer.js</ScriptFile>
+    <RequiredDependencies>
+      <Name>jquery</Name>
+      <Name>Runtime</Name>
+    </RequiredDependencies>
+  </Dependency>
+
+  <Dependency Name="Runtime" Type="js">
+    <ScriptFile>~/Scripts/HTML5Support/RuntimeSettings.js</ScriptFile>
+  </Dependency>
 </Dependencies>

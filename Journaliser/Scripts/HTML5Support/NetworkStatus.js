@@ -15,9 +15,6 @@ function NetworkStatus(timeoutInMilliseconds) {
         this._timeout = timeoutInMilliseconds;
     }
 
-//    if (window.applicationCache) {
-//        this._cache = window.applicationCache;
-//    }
 
     this._networkStatusEventHandler = new Array();
     this._monitorTimer = null;
@@ -29,16 +26,9 @@ NetworkStatus.prototype = {
             $(document.body).bind("online", this._checkNetworkStatus);
             $(document.body).bind("offline", this._checkNetworkStatus);
             this._initialised = true;
-            this._checkNetworkStatus();
         }
+        this._checkNetworkStatus();
     },
-
-    //    isCacheAvailable: function () {
-    //        /// <summary>
-    //        /// Is there a cache object to use within this application?
-    //        /// </summary>
-    //        return (this._cache != null);
-    //    },
 
     isOnline: function () {
         /// <summary>

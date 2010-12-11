@@ -27,6 +27,13 @@
     </RequiredDependencies>
   </Dependency>
 
+  <Dependency Name="ScriptTests" Type="js">
+    <ScriptFile>~/Scripts/Tests/StorageTests.js</ScriptFile>
+    <RequiredDependencies>
+      <Name>Main</Name>
+    </RequiredDependencies>
+  </Dependency>
+
   <Dependency Name="Main" Type="js">
     <ScriptFile>~/Scripts/HTML5Support/Main.js</ScriptFile>
     <RequiredDependencies>
@@ -34,6 +41,7 @@
       <Name>NetworkStatus</Name>
       <Name>DataLayer</Name>
       <Name>Runtime</Name>
+      <Name>CacheManager</Name>
     </RequiredDependencies>
   </Dependency>
 
@@ -44,7 +52,14 @@
       <Name>Runtime</Name>
     </RequiredDependencies>
   </Dependency>
-  
+
+  <Dependency Name="CacheManager" Type="js">
+    <ScriptFile>~/Scripts/HTML5Support/CacheManager.js</ScriptFile>
+    <RequiredDependencies>
+      <Name>jquery</Name>
+    </RequiredDependencies>
+  </Dependency>
+
   <Dependency Name="DataLayer" Type="js">
     <ScriptFile>~/Scripts/HTML5Support/DataLayer.js</ScriptFile>
     <RequiredDependencies>

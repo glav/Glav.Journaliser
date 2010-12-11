@@ -1,9 +1,14 @@
 ﻿# v01 <== change this to force reloading cached resources
 CACHE:
-/Home/Index
+Index
+About
+Journaliser
 scripts/jquery-1.4.2.min.js
-scripts/NetworkStatus.js
-scripts/DataLayer.js
+scripts/HTML5Support/NetworkStatus.js
+scripts/HTML5Support/DataLayer.js
+scripts/HTML5Support/RuntimeSettings.js
+scripts/HTML5Support/CacheManager.js
+scripts/HTML5Support/Main.js
 content/Site.css
 NETWORK:
 scripts/ping.js

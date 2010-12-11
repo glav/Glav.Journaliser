@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html manifest="cache.manifest">
+<head>
+    <title>@View.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    @ScriptDependencyExtension.ScriptHelper.RequiresScripts("ScriptTests")
+</head>
+
+<body>
+    <h2>ScriptTests</h2>
+
+    <h3>StorageTests</h3>
+
+    <ul id="testResults">
+    </ul>
+</body>
+</html>
+

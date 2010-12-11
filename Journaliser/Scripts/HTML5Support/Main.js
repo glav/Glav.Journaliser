@@ -2,10 +2,13 @@
 /// <reference path="../jquery-1.4.2-vsdoc.js" />
 /// <reference path="DataLayer.js" />
 /// <reference path="RuntimeSettings.js" />
+/// <reference path="CacheManager.js" />
 
 
 $(document).ready(function () {
     _networkStatus.initialise();
+
+    var cacheManager = new CacheManager();
 
     function handleOnline() {
         $("#onlineStatus span")
@@ -36,11 +39,6 @@ $(document).ready(function () {
         }
     });
 
-    _networkStatus.startMonitoring();
+    //_networkStatus.startMonitoring();
 
-    $("#test").click(function () {
-        var dal = new DataLayer();
-        var entry = dal.constructJournalEntry();
-        debugger;
-    });
 });

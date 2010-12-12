@@ -131,7 +131,7 @@ namespace Journaliser.Controllers
                 {
                     ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
                 }
-            }
+            }   
 
             // If we got this far, something failed, redisplay form
             ViewBag.PasswordLength = MembershipService.MinPasswordLength;

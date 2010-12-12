@@ -5,6 +5,7 @@ using System.Text;
 using Journaliser.Logic.Domain.Model;
 using Raven.Client;
 using Journaliser.Logic.Properties;
+using System.Diagnostics.Contracts;
 
 namespace Journaliser.Logic.Data
 {
@@ -21,6 +22,8 @@ namespace Journaliser.Logic.Data
         }
         public JournalEntry GetJournalEntry(string id)
         {
+            Contract.Requires<ArgumentNullException>(!string.IsNullOrWhiteSpace(id));
+
             using (var context = _documentStore.OpenSession())
             {
                 return context.Load<JournalEntry>(id);
@@ -30,8 +33,8 @@ namespace Journaliser.Logic.Data
 
         public string AddJournalEntry(JournalEntry entry)
         {
-            if (entry == null)
-                return null;
+            Contract.Requires<ArgumentNullException>(entry != null);
+            Contract.Requires<ArgumentNullException>(!string.IsNullOrWhiteSpace(entry.Owner));
 
             using (var context = _documentStore.OpenSession())
             {
@@ -56,6 +59,9 @@ namespace Journaliser.Logic.Data
 
         public void DeleteJournalEntry(JournalEntry entry)
         {
+            Contract.Requires<ArgumentNullException>(entry != null);
+            Contract.Requires<ArgumentNullException>(!string.IsNullOrWhiteSpace(entry.Owner));
+
             using (var context = _documentStore.OpenSession())
             {
                 if (entry != null)
@@ -68,6 +74,8 @@ namespace Journaliser.Logic.Data
 
         public void DeleteJournalEntry(string id)
         {
+            Contract.Requires<ArgumentNullException>(!string.IsNullOrWhiteSpace(id));
+
             using (var context = _documentStore.OpenSession())
             {
                 var entry = context.Load<JournalEntry>(id);

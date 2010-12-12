@@ -1,19 +1,19 @@
 ﻿@model Journaliser.Models.LogOnModel
 
 @{
-    ViewBag.Title = "Log On";
+    ViewBag.Title = "Sign In";
 }
 
-<h2>Log On</h2>
+<h2>Sign in</h2>
 <p>
-    Please enter your username and password. @Html.ActionLink("Register", "Register") if you don't have an account.
+    Sign in with your username and password. @Html.ActionLink("Sign up", "Register") if you don't have an account with us already.
 </p>
-@Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
+@Html.ValidationSummary(true, "We could not sign you in. Please correct the errors and try again.")
 
 @using (Html.BeginForm()) {
     <div>
         <fieldset>
-            <legend>Account Information</legend>
+            <legend>User Details</legend>
 
             <div class="editor-label">
                 @Html.LabelFor(m => m.UserName)

@@ -1,4 +1,6 @@
-﻿# v01 <== change this to force reloading cached resources
+﻿CACHE MANIFEST
+# v01 <== change this to force reloading cached resources
+
 CACHE:
 Index
 About
@@ -10,5 +12,6 @@ scripts/HTML5Support/RuntimeSettings.js
 scripts/HTML5Support/CacheManager.js
 scripts/HTML5Support/Main.js
 content/Site.css
+
 NETWORK:
 scripts/ping.js

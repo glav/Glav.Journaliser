@@ -8,7 +8,7 @@ namespace Journaliser.Logic.Data
 {
     public interface IJournalRepository
     {
-        JournalEntry GetJournalEntry(string id);
+        T GetDocument<T>(string id) where T : class;
         string AddJournalEntry(JournalEntry entry);
         IEnumerable<JournalEntry> GetJournalEntriesByCreationDate(DateTime fromDate, DateTime toDate, int maxRecords);
         void DeleteJournalEntry(string id);

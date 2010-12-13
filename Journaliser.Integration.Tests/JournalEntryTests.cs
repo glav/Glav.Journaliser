@@ -33,7 +33,7 @@ namespace Journaliser.Integration.Tests
             Assert.AreNotEqual<string>(null, id);
             Assert.AreNotEqual<string>(string.Empty, id);
 
-            var addedEntity = Repository.GetJournalEntry(id);
+            var addedEntity = Repository.GetDocument<JournalEntry>(id);
             Assert.IsNotNull(addedEntity);
             Assert.AreEqual<string>(entry.Title, addedEntity.Title);
         }

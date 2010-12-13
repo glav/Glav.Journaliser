@@ -20,13 +20,13 @@ namespace Journaliser.Logic.Data
 
             _documentStore = documentStore;
         }
-        public JournalEntry GetJournalEntry(string id)
+        public T GetDocument<T>(string id) where T :class
         {
             Contract.Requires<ArgumentNullException>(!string.IsNullOrWhiteSpace(id));
 
             using (var context = _documentStore.OpenSession())
             {
-                return context.Load<JournalEntry>(id);
+                return context.Load<T>(id);
             }
         }
 

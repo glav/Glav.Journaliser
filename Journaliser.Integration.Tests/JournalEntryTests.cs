@@ -28,6 +28,7 @@ namespace Journaliser.Integration.Tests
 
             var entry = new JournalEntry();
             entry.Title = "test";
+            entry.Owner = "unit test";
 
             var id = AddJournalEntry(entry);
             Assert.AreNotEqual<string>(null, id);
@@ -48,14 +49,15 @@ namespace Journaliser.Integration.Tests
             {
                 var entry = new JournalEntry();
                 entry.Title = "test" + i.ToString();
+                entry.Owner = "unti tester";
                 var id = AddJournalEntry(entry);
             }
             var addEnd = DateTime.Now;
 
-            var allEntries = Repository.GetJournalEntriesByCreationDate(addStart, addEnd, Config.Default.DefaultPageSize);
+            var allEntries = Repository.GetEntriesByCreationDate<JournalEntry>(addStart, addEnd, Config.Default.DefaultPageSize);
             Assert.AreEqual<int>(3, allEntries.Count());
 
-            var sameEntries3 = Repository.GetJournalEntriesByCreationDate(addEnd.AddHours(1), addEnd.AddHours(2), Config.Default.DefaultPageSize);
+            var sameEntries3 = Repository.GetEntriesByCreationDate<JournalEntry>(addEnd.AddHours(1), addEnd.AddHours(2), Config.Default.DefaultPageSize);
             Assert.AreEqual<int>(0, sameEntries3.Count());
 
 

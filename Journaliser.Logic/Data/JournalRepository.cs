@@ -20,7 +20,7 @@ namespace Journaliser.Logic.Data
 
             _documentStore = documentStore;
         }
-        public T GetDocument<T>(string id) where T :class
+        public T GetDocument<T>(string id) where T : IBaseDocument
         {
             Contract.Requires<ArgumentNullException>(!string.IsNullOrWhiteSpace(id));
 
@@ -31,7 +31,7 @@ namespace Journaliser.Logic.Data
         }
 
 
-        public string AddJournalEntry(JournalEntry entry)
+        public string AddDocument<T>(T entry) where T : IBaseDocument
         {
             Contract.Requires<ArgumentNullException>(entry != null);
             Contract.Requires<ArgumentNullException>(!string.IsNullOrWhiteSpace(entry.Owner));
@@ -45,11 +45,11 @@ namespace Journaliser.Logic.Data
             }
         }
 
-        public IEnumerable<JournalEntry> GetJournalEntriesByCreationDate(DateTime fromDate, DateTime toDate, int maxRecords)
+        public IEnumerable<T> GetEntriesByCreationDate<T>(DateTime fromDate, DateTime toDate, int maxRecords) where T : IBaseDocument
         {
             using (var context = _documentStore.OpenSession())
             {
-                var entries = context.Query<JournalEntry>().Customize(x => x.WaitForNonStaleResultsAsOfNow())
+                var entries = context.Query<T>().Customize(x => x.WaitForNonStaleResultsAsOfNow())
                                 .Where(x => x.CreatedDate >= fromDate)
                                 .Where(x => x.CreatedDate <= toDate)
                                 .Take(maxRecords);
@@ -57,7 +57,7 @@ namespace Journaliser.Logic.Data
             }
         }
 
-        public void DeleteJournalEntry(JournalEntry entry)
+        public void DeleteDocument<T>(T entry) where T : IBaseDocument
         {
             Contract.Requires<ArgumentNullException>(entry != null);
             Contract.Requires<ArgumentNullException>(!string.IsNullOrWhiteSpace(entry.Owner));
@@ -66,24 +66,35 @@ namespace Journaliser.Logic.Data
             {
                 if (entry != null)
                 {
-                    context.Delete<JournalEntry>(entry);
+                    context.Delete<T>(entry);
                     context.SaveChanges();
                 }
             }
         }
 
-        public void DeleteJournalEntry(string id)
+        public void DeleteDocument<T>(string id) where T : IBaseDocument
         {
             Contract.Requires<ArgumentNullException>(!string.IsNullOrWhiteSpace(id));
 
             using (var context = _documentStore.OpenSession())
             {
-                var entry = context.Load<JournalEntry>(id);
+                var entry = context.Load<T>(id);
                 if (entry != null)
                 {
-                    context.Delete<JournalEntry>(entry);
+                    context.Delete<T>(entry);
                     context.SaveChanges();
                 }
+            }
+        }
+
+
+        public User GetUser(string username)
+        {
+            using (var context = _documentStore.OpenSession())
+            {
+                var user = context.Query<User>()
+                                .Where(u => u.Username == username);
+                return user.FirstOrDefault();
             }
         }
     }

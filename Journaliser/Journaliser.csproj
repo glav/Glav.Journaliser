@@ -83,7 +83,9 @@
     <Content Include="Scripts\HTML5Support\NetworkStatus.js" />
     <Content Include="Scripts\ping.js" />
     <Content Include="Scripts\Tests\StorageTests.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

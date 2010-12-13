@@ -27,13 +27,13 @@ namespace Journaliser.Integration.Tests
 
         public string AddJournalEntry(JournalEntry entry)
         {
-            var id = Repository.AddJournalEntry(entry);
+            var id = Repository.AddDocument<JournalEntry>(entry);
             _idsAdded.Add(id);
             return id;
         }
         public void Dispose()
         {
-            _idsAdded.ForEach(d => Repository.DeleteJournalEntry(d));
+            _idsAdded.ForEach(d => Repository.DeleteDocument<JournalEntry>(d));
         }
     }
 }

@@ -7,6 +7,12 @@ function NetworkStatus(timeoutInMilliseconds) {
     /// This class will handle the checking of network status for offline and online mode as well
     /// as detecting support for the cache
     /// </summary>
+
+    if (!this._isDefined($)) {
+        alert('jQuery has not been detected. This component depends upon jQuery being loaded first.');
+        return;
+    }
+
     this._cache = null;
     this._isOnline = true;
     this._initialised = false;
@@ -15,19 +21,17 @@ function NetworkStatus(timeoutInMilliseconds) {
         this._timeout = timeoutInMilliseconds;
     }
 
-
     this._networkStatusEventHandler = new Array();
     this._monitorTimer = null;
 }
 
 NetworkStatus.prototype = {
-    initialise: function () {
-        if (this._initialised === false) {
-            $(document.body).bind("online", this._checkNetworkStatus);
-            $(document.body).bind("offline", this._checkNetworkStatus);
-            this._initialised = true;
+    _isDefined: function (arg) {
+        var undefined;
+        if (arg === undefined) {
+            return false;
         }
-        this._checkNetworkStatus();
+        return true;
     },
 
     isOnline: function () {
@@ -56,7 +60,8 @@ NetworkStatus.prototype = {
         /// Removes a handler from the list of handlers that deal with network status changed events
         /// </summary>
         var tmpArray = new Array();
-        for (var cnt = 0; cnt < this._networkStatusEventHandler.length; cnt++) {
+        var numHandlers = this._networkStatusEventHandler.length;
+        for (var cnt = 0; cnt < numHandlers; cnt++) {
             if (handler === this._networkStatusEventHandler[cnt]) {
                 this._networkStatusEventHandler[cnt] = null;
             } else {
@@ -76,7 +81,8 @@ NetworkStatus.prototype = {
 
     _fireStatusChangedEvent: function (isOnline, errorMessage) {
         this._isOnline = isOnline;
-        for (var cnt = 0; cnt < this._networkStatusEventHandler.length; cnt++) {
+        var numHandlers = this._networkStatusEventHandler.length;
+        for (var cnt = 0; cnt < numHandlers; cnt++) {
             var handler = this._networkStatusEventHandler[cnt];
             if (typeof (handler) === 'function') {
                 var args = { "isOnline": this._isOnline,
@@ -88,21 +94,24 @@ NetworkStatus.prototype = {
         }
     },
 
-    _checkNetworkStatus: function () {
+    _checkNetworkStatus: function (context) {
         if (this._initialised === false) {
-            alert("You must initialise this component first. (_networkStatus.initialise(); )");
+            alert("You must initiate network status checks first by calling the startMonitoring function on this component.");
             return;
         }
 
-        if (navigator.onLine || navigator.online === 'undefined') {
+        // dont rely on the globally defined undefined constant
+        var undefined;
+        if (navigator.onLine === undefined || navigator.onLine === true) {
             // Just because the browser says we're online doesn't mean we're online. The browser lies.
             // Check to see if we are really online by making a call for a static JSON resource on
             // the originating Web site. If we can get to it, we're online. If not, assume we're
             // offline.
+            var timeout = this._timeout;
             $.ajaxSetup({
                 async: true,
                 cache: false,
-                context: $("#status"),
+                context: this,
                 dataType: "json",
                 error: function (req, status, ex) {
                     console.log("Error: " + ex + ", Status Text:" + status);
@@ -113,36 +122,64 @@ NetworkStatus.prototype = {
                     // manifest is ill-formed.
 
                     var msg = req.status >= 500 ? status : null;
-                    _networkStatus._fireStatusChangedEvent(false, msg);
+                    context._fireStatusChangedEvent(false, msg);
                 },
                 success: function (data, status, req) {
-                    _networkStatus._fireStatusChangedEvent(true);
+                    context._fireStatusChangedEvent(true);
                 },
-                timeout: _networkStatus._timeout,
+                timeout: timeout,
                 type: "GET",
                 url: _runtime.rootPath + "scripts/ping.js"
             });
             $.ajax();
         }
         else {
-            _networkStatus._fireStatusChangedEvent(false);
+            context._fireStatusChangedEvent(false);
         }
     },
 
-    startMonitoring: function () {
-        if (this._monitorTimer == null) {
+    startMonitoring: function (options) {
+        var context = this;
+        var enablePolling = false;
+        if (this._monitorTimer !== null) {
+            clearInterval(this.monitorTimer);
+        }
+
+        if (this._initialised === false) {
+            $(document.body).bind("online", function (e) {
+                context._checkNetworkStatus(parent);
+            });
+            $(document.body).bind("offline", function (e) {
+                context._checkNetworkStatus(parent); ;
+            });
+            this._initialised = true;
+        }
+
+        if (this._isDefined(options)) {
+            if (this._isDefined(options.timeout)) {
+                this.setTimeoutInMillseconds(options.timeout);
+            }
+            if (this._isDefined(options.enablePolling)) {
+                enablePolling = options.enablePolling;
+            }
+        }
+
+        this._checkNetworkStatus();
+
+        if (enablePolling) {
             this.monitorTimer = setInterval(this._checkNetworkStatus, this.getTimeoutInMillseconds());
         }
     },
 
     stopMonitoring: function () {
-        if (this._monitorTimer) {
+        if (this._monitorTimer !== null) {
             clearInterval(this._monitorTimer);
         }
-    }
-}
 
-var _networkStatus;
-if (typeof (_networkStatus === 'undefined')) {
-    _networkStatus = new NetworkStatus();
+        if (this._initialised === true) {
+            $(document.body).unbind("online", this._checkNetworkStatus);
+            $(document.body).unbind("offline", this._checkNetworkStatus);
+            this._initialised = false;
+        }
+    }
 }

@@ -15,7 +15,7 @@ CacheManager.prototype = {
         return (this.cache !== null);
     },
 
-    _setupEventHandlers: function() {
+    _setupEventHandlers: function () {
         this._cache.addEventListener("cached", function () {
             console.log("All resources for this web app have now been downloaded. You can run this application while not connected to the internet");
         }, false);
@@ -26,7 +26,7 @@ CacheManager.prototype = {
             console.log("Starting download of cached files");
         }, false);
         this._cache.addEventListener("error", function (e) {
-            console.log("There was an error in the manifest, downloading cached files or you're offline: " + e);
+            console.log("There was an error in the manifest, downloading cached files or you're offline: [" + e.type + " - " + (e.ERROR ? e.ERROR : "Unknown") +  "]");
         }, false);
         this._cache.addEventListener("noupdate", function () {
             console.log("There was no update needed");

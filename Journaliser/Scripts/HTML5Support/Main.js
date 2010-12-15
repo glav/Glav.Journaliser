@@ -3,12 +3,12 @@
 /// <reference path="DataLayer.js" />
 /// <reference path="RuntimeSettings.js" />
 /// <reference path="CacheManager.js" />
+/// <reference path="NetworkStatus.js" />
 
 
 $(document).ready(function () {
-    _networkStatus.initialise();
-
     var cacheManager = new CacheManager();
+    var netStatus = new NetworkStatus();
 
     function handleOnline() {
         $("#onlineStatus span")
@@ -26,7 +26,7 @@ $(document).ready(function () {
         $("#logindisplay").slideUp('slow');
     }
 
-    _networkStatus.addNetworkStatusChangedHandler(function (args) {
+    netStatus.addNetworkStatusChangedHandler(function (args) {
 
         if (!args.hasError) {
             if (args.isOnline) {
@@ -39,6 +39,7 @@ $(document).ready(function () {
         }
     });
 
-    //_networkStatus.startMonitoring();
+    netStatus.startMonitoring();
+
 
 });

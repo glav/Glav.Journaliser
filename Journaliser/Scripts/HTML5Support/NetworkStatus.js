@@ -23,6 +23,7 @@ function NetworkStatus(timeoutInMilliseconds) {
 
     this._networkStatusEventHandler = new Array();
     this._monitorTimer = null;
+    this._pingUrl = "/scripts/ping.js";
 }
 
 NetworkStatus.prototype = {
@@ -46,6 +47,14 @@ NetworkStatus.prototype = {
     },
     getTimeoutInMillseconds: function () {
         return this._timeout;
+    },
+
+    setPingUrl: function (pingUrl) {
+        this._pingUrl = pingUrl;
+    },
+
+    getPingUrl: function () {
+        return this._pingUrl;
     },
 
     addNetworkStatusChangedHandler: function (handler) {
@@ -85,7 +94,8 @@ NetworkStatus.prototype = {
         for (var cnt = 0; cnt < numHandlers; cnt++) {
             var handler = this._networkStatusEventHandler[cnt];
             if (typeof (handler) === 'function') {
-                var args = { "isOnline": this._isOnline,
+                var args = {
+                    "isOnline": this._isOnline,
                     "hasError": (errorMessage && errorMessage.length > 0),
                     "errorMessage": (errorMessage && errorMessage.length > 0) ? errorMessage : ""
                 };
@@ -94,7 +104,8 @@ NetworkStatus.prototype = {
         }
     },
 
-    _checkNetworkStatus: function (context) {
+    _checkNetworkStatus: function () {
+        var context = this;
         if (this._initialised === false) {
             alert("You must initiate network status checks first by calling the startMonitoring function on this component.");
             return;
@@ -107,11 +118,9 @@ NetworkStatus.prototype = {
             // Check to see if we are really online by making a call for a static JSON resource on
             // the originating Web site. If we can get to it, we're online. If not, assume we're
             // offline.
-            var timeout = this._timeout;
             $.ajaxSetup({
                 async: true,
                 cache: false,
-                context: this,
                 dataType: "json",
                 error: function (req, status, ex) {
                     console.log("Error: " + ex + ", Status Text:" + status);
@@ -127,9 +136,9 @@ NetworkStatus.prototype = {
                 success: function (data, status, req) {
                     context._fireStatusChangedEvent(true);
                 },
-                timeout: timeout,
+                timeout: context._timeout,
                 type: "GET",
-                url: _runtime.rootPath + "scripts/ping.js"
+                url: context._pingUrl
             });
             $.ajax();
         }
@@ -145,30 +154,39 @@ NetworkStatus.prototype = {
             clearInterval(this.monitorTimer);
         }
 
+        // Setup our options
+        var settings = {
+            'timeout': 5000,
+            'enablePolling': false,
+            'pingUrl': 'scripts/ping.js'
+        };
+
+        if (options) {
+            // Merge the user supplied settings with the 'settings' object which contains all our
+            // defaults
+            $.extend(settings, options);
+        }
+
+        if (settings.enablePolling) {
+            this.monitorTimer = setInterval(this._checkNetworkStatus, this.getTimeoutInMillseconds());
+        }
+
+        this.setTimeoutInMillseconds(settings.timeout);
+        this._pingUrl = settings.pingUrl;
+
+        // bind our events
         if (this._initialised === false) {
             $(document.body).bind("online", function (e) {
-                context._checkNetworkStatus(parent);
+                context._checkNetworkStatus.apply(context, []);
             });
             $(document.body).bind("offline", function (e) {
-                context._checkNetworkStatus(parent); ;
+                context._checkNetworkStatus.apply(context, []);
             });
             this._initialised = true;
         }
 
-        if (this._isDefined(options)) {
-            if (this._isDefined(options.timeout)) {
-                this.setTimeoutInMillseconds(options.timeout);
-            }
-            if (this._isDefined(options.enablePolling)) {
-                enablePolling = options.enablePolling;
-            }
-        }
-
         this._checkNetworkStatus();
 
-        if (enablePolling) {
-            this.monitorTimer = setInterval(this._checkNetworkStatus, this.getTimeoutInMillseconds());
-        }
     },
 
     stopMonitoring: function () {

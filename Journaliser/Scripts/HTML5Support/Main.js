@@ -39,7 +39,7 @@ $(document).ready(function () {
         }
     });
 
-    netStatus.startMonitoring();
+    netStatus.startMonitoring({ pingUrl: _runtime.rootPath + "scripts/ping.js" });
 
 
 });

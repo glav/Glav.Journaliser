@@ -168,7 +168,9 @@ NetworkStatus.prototype = {
         }
 
         if (settings.enablePolling) {
-            this.monitorTimer = setInterval(this._checkNetworkStatus, this.getTimeoutInMillseconds());
+            context.monitorTimer = setInterval(function () {
+                context._checkNetworkStatus.apply(context);
+            }, context.getTimeoutInMillseconds());
         }
 
         this.setTimeoutInMillseconds(settings.timeout);

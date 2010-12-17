@@ -2,8 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Journaliser - Offline</title>
+    <script type="text/javascript" src="../Scripts/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="../Scripts/HTML5Support/NetworkStatus.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var netStatus = new NetworkStatus();
+            netStatus.addNetworkStatusChangedHandler(function (args) {
+                if (args.isOnline === true) {
+                    window.location.assign('/Journaliser/');
+                }
+            });
+
+            setTimeout(function () {
+                netStatus.startMonitoring({pingUrl:'/Journaliser/scripts/ping.js', enablePolling: true });
+            }, 5000);
+        });
+    </script>
 </head>
 <body>
+    <h1>Home</h1>
 
+    <p>Hey, it appears you are offline.</p>
+    <p>We are sorry for the inconvenience. This page will redirect you automatically back to the sites home
+    page when the site is back online again or you resume online mode.</p>
 </body>
 </html>

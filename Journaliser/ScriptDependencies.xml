@@ -37,11 +37,11 @@
   <Dependency Name="Main" Type="js">
     <ScriptFile>~/Scripts/HTML5Support/Main.js</ScriptFile>
     <RequiredDependencies>
+      <Name>CacheManager</Name>
       <Name>jquery</Name>
       <Name>NetworkStatus</Name>
       <Name>DataLayer</Name>
       <Name>Runtime</Name>
-      <Name>CacheManager</Name>
     </RequiredDependencies>
   </Dependency>
 

@@ -1,8 +1,12 @@
 ﻿CACHE MANIFEST
+#v07
 
 CACHE:
 offline/Home.htm
-scripts/jquery-1.4.2.min.js
+offline/About.htm
+scripts/jquery-1.4.2.js
+scripts/jquery.validate.unobtrusive.js
+scripts/jquery.unobtrusive-ajax.js
 scripts/HTML5Support/NetworkStatus.js
 scripts/HTML5Support/DataLayer.js
 scripts/HTML5Support/RuntimeSettings.js

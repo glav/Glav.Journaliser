@@ -73,6 +73,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Offline\About.htm" />
+    <Content Include="Offline\Fallback.htm" />
     <Content Include="Offline\Home.htm" />
     <Content Include="ScriptDependencies.xml" />
     <Content Include="Scripts\HTML5Support\CacheManager.js" />

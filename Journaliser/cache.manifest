@@ -16,3 +16,6 @@ content/Site.css
 
 NETWORK:
 scripts/ping.js
+
+FALLBACK:
+offline/fallback.htm

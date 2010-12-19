@@ -5,7 +5,6 @@
 /// <reference path="CacheManager.js" />
 /// <reference path="NetworkStatus.js" />
 
-
 $(document).ready(function () {
     var cacheManager = new CacheManager();
     var netStatus = new NetworkStatus();
@@ -65,7 +64,7 @@ $(document).ready(function () {
         }
     });
 
-    netStatus.startMonitoring( { pingUrl: _runtime.rootPath + "scripts/ping.js", enablePolling:true });
+    netStatus.startMonitoring({ pingUrl: _runtime.rootPath + "scripts/ping.js", enablePolling: true });
 
 
 });

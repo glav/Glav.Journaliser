@@ -87,7 +87,6 @@ namespace Journaliser.Logic.Data
             }
         }
 
-
         public User GetUser(string username)
         {
             using (var context = _documentStore.OpenSession())
@@ -95,6 +94,14 @@ namespace Journaliser.Logic.Data
                 var user = context.Query<User>()
                                 .Where(u => u.Username == username);
                 return user.FirstOrDefault();
+            }
+        }
+        public void AddUser(User userToAdd)
+        {
+            using (var context = _documentStore.OpenSession())
+            {
+                context.Store(userToAdd);
+                context.SaveChanges();
             }
         }
     }

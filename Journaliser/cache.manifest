@@ -14,6 +14,7 @@ http://localhost/Journaliser/offline/Home.htm
 http://localhost/Journaliser/offline/About.htm
 http://localhost/Journaliser/offline/Fallback.htm
 http://localhost/Journaliser/Home/About
+http://localhost/Journaliser/Account/LogOn
 http://localhost/Journaliser/Scripts/jquery-1.4.2.js
 http://localhost/Journaliser/Scripts/HTML5Support/NetworkStatus.js
 http://localhost/Journaliser/Scripts/HTML5Support/RuntimeSettings.js

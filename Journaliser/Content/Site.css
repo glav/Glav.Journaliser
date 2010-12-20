@@ -22,13 +22,26 @@
 
 #status-links {
     float:right;
+    position:relative;
+    top:-80px;
+    font-size:0.85em;
 }
     #logindisplay {
-        
+        color: #00FFFF;
     }
+        #logindisplay a, #logindisplay a:visited {
+            color: #99CCFF;
+        }
     #onlineStatus span {
-        float:right;
+        padding-right:22px;
     }
+.status-online {
+    color: #00CC99;
+}
+
+.status-offline {
+    color: #FF9B9B;
+}
     
 #menucontainer {
     margin: auto;
@@ -57,13 +70,6 @@
                 color: #9999FF;
             }
 
-.status-online {
-    color:Green;
-}
-
-.status-offline {
-    color:Red;
-}
 
 #main {
     width:70%;

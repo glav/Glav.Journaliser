@@ -28,7 +28,17 @@
 
                 <ul id="menu">
                     <li class="home">@Html.ActionLink("Home", "Index", "Home",null, new { @class = "cache-link"} )</li>
-                    <li class=" journal logged-in">@Html.ActionLink("Add to your Journal","","")</li>
+                    @{
+                        if (Request.IsAuthenticated) 
+                        { 
+                            <text><li class="journal">@Html.ActionLink("Add to your Journal","","")</li></text> 
+                        }
+                        if (!Request.IsAuthenticated)
+                        { 
+                            <text><li class="signin">@Html.ActionLink("Sign In", "LogOn", "Account")</li></text> 
+                        }
+                    }
+                    
                     <li class="about">@Html.ActionLink("About", "About", "Home", null, new { @class = "cache-link" })</li>
                 </ul>
 

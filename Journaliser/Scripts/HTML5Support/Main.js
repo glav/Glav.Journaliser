@@ -64,6 +64,9 @@ $(document).ready(function () {
         }
     });
 
+    function bindMenuLinkStyles() {
+    }
+
     netStatus.startMonitoring({ pingUrl: _runtime.rootPath + "scripts/ping.js", enablePolling: true });
 
 

@@ -1,9 +1,23 @@
-﻿#header {
+﻿body {
+    background-color: #003366;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.page {
+    padding:10px 5px;
+}
+
+#header {
 }
 
 #title {
     margin:auto;
     text-align:center;
+    width:40%;
+    background-color:#FFFFFF;
+    border:1px solid blue;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
 }
 
 #status-links {
@@ -21,12 +35,27 @@
     text-align: center;
 }
     #menucontainer ul {
-        list-style:none;
+        -moz-border-radius: 5px 5px 5px 5px;
+        border: 1px dotted white;
+        list-style: none outside none;
+        margin: auto;
+        width: 30%;
     }
-        #menucontainer li {
+        #menucontainer ul li {
             display:inline;
-            padding:10px;
+            padding:0 15px;
+            border-left:1px solid green;
+            font-size:0.9em;
         }
+        #menucontainer ul li.selected {
+            background-color: white;
+            padding-top: 15px;
+            position: relative;
+            top: 10px;
+        }
+            #menucontainer ul li a {
+                color: #9999FF;
+            }
 
 .status-online {
     color:Green;
@@ -34,4 +63,15 @@
 
 .status-offline {
     color:Red;
+}
+
+#main {
+    width:70%;
+    border:1px solid blue;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    margin:auto;
+    padding:5px 15px;
+    background:#FFFFFF;
 }

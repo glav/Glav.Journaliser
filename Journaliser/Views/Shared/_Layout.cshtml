@@ -27,14 +27,9 @@
             <div id="menucontainer">
 
                 <ul id="menu">
-                    @if (ViewData["page"] == "home") {
-                        <li class="selected">
-                    @} else {
-                        <li>
-                    @}
-                        @Html.ActionLink("Home", "Index", "Home",null, new { @class = "cache-link"} )</li>
-                    <li class="logged-in">@Html.ActionLink("Add to your Journal","","")</li>
-                    <li class="">@Html.ActionLink("About", "About", "Home", null, new { @class = "cache-link" })</li>
+                    <li class="home">@Html.ActionLink("Home", "Index", "Home",null, new { @class = "cache-link"} )</li>
+                    <li class=" journal logged-in">@Html.ActionLink("Add to your Journal","","")</li>
+                    <li class="about">@Html.ActionLink("About", "About", "Home", null, new { @class = "cache-link" })</li>
                 </ul>
 
             </div>

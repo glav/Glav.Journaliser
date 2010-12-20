@@ -65,9 +65,16 @@ $(document).ready(function () {
     });
 
     function bindMenuLinkStyles() {
+        var pageId = $("#page-id").val();
+        $("#menucontainer #menu li").each(function () {
+            $(this).removeClass('selected');
+        });
+        $("#menucontainer #menu ." + pageId).addClass('selected');
+
     }
 
     netStatus.startMonitoring({ pingUrl: _runtime.rootPath + "scripts/ping.js", enablePolling: true });
 
+    bindMenuLinkStyles();
 
 });

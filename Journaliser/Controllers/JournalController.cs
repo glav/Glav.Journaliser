@@ -13,6 +13,7 @@ namespace Journaliser.Controllers
 
         public ActionResult Index()
         {
+            ViewData["page"] = "home";
             return View();
         }
 

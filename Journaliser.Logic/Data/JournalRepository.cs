@@ -96,13 +96,5 @@ namespace Journaliser.Logic.Data
                 return user.FirstOrDefault();
             }
         }
-        public void AddUser(User userToAdd)
-        {
-            using (var context = _documentStore.OpenSession())
-            {
-                context.Store(userToAdd);
-                context.SaveChanges();
-            }
-        }
     }
 }

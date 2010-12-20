@@ -4,19 +4,19 @@
     ViewBag.Title = "Sign up";
 }
 
-<h2>Sign up for a New Account</h2>
+<h2>Sign up so you can utilise the Journalisers full functionality</h2>
 <p>
-    Use the form below to create a new account. 
+    It only takes a minute to fil in the fields below and you are done.
 </p>
 <p>
     Passwords are required to be a minimum of @ViewBag.PasswordLength characters in length.
 </p>
 
 @using (Html.BeginForm()) {
-    @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
+    @Html.ValidationSummary(true, "Sign up process was unsuccessful. Please correct the errors and try again.")
     <div>
         <fieldset>
-            <legend>Account Information</legend>
+            <legend>User Information</legend>
 
             <div class="editor-label">
                 @Html.LabelFor(m => m.UserName)

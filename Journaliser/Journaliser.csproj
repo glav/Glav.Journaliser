@@ -129,6 +129,12 @@
     <None Include="cache.manifest" />
     <Content Include="Views\ScriptTests\Index.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Journaliser.Logic\Journaliser.Logic.csproj">
+      <Project>{E05C904D-C921-4B94-BC0F-5A6E0C2E65D5}</Project>
+      <Name>Journaliser.Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

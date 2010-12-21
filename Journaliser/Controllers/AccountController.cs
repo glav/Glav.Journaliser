@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using Journaliser.Models;
+using Journaliser.Logic.Domain.Security;
 
 namespace Journaliser.Controllers
 {

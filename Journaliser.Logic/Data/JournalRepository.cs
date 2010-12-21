@@ -39,6 +39,7 @@ namespace Journaliser.Logic.Data
             using (var context = _documentStore.OpenSession())
             {
                 entry.CreatedDate = DateTime.Now;
+                entry.ModifiedDate = null;
                 context.Store(entry);
                 context.SaveChanges();
                 return entry.Id;
@@ -87,13 +88,27 @@ namespace Journaliser.Logic.Data
             }
         }
 
-        public User GetUser(string username)
+        public User GetUser(string username, string password)
         {
             using (var context = _documentStore.OpenSession())
             {
                 var user = context.Query<User>()
-                                .Where(u => u.Username == username);
+                                .Where(u => u.Username == username && u.Password == password);
                 return user.FirstOrDefault();
+            }
+        }
+
+        public void UpdateDocument<T>(T updatedDoc) where T : IBaseDocument
+        {
+            if (updatedDoc == null) throw new ArgumentNullException("Document to update cannot be null");
+            if (string.IsNullOrWhiteSpace(updatedDoc.Id)) throw new ArgumentNullException("Id cannot be null");
+            if (string.IsNullOrWhiteSpace(updatedDoc.Owner)) throw new ArgumentNullException("Owner cannot be null");
+
+            using (var context = _documentStore.OpenSession())
+            {
+                updatedDoc.ModifiedDate = DateTime.Now;
+                context.Store(updatedDoc);
+                context.SaveChanges();
             }
         }
     }

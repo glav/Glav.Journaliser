@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Journaliser;
 using Journaliser.Controllers;
 using Journaliser.Models;
+using Journaliser.Logic.Domain.Security;
 
 namespace Journaliser.Tests.Controllers
 {

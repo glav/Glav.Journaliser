@@ -15,6 +15,8 @@ namespace Journaliser.Logic.Domain.Model
             get { return _createdDate; }
             set {_createdDate = value; }
         }
+
+        public DateTime? ModifiedDate { get; set; }
         public string Owner { get; set; }
     }
 }

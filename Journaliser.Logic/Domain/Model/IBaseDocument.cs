@@ -9,6 +9,7 @@ namespace Journaliser.Logic.Domain.Model
     {
         string Id {get; set;}
         DateTime CreatedDate { get; set; }
+        DateTime? ModifiedDate { get; set; }
         string Owner { get; set; }
     }
 }

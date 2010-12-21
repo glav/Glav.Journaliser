@@ -59,6 +59,10 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Journaliser.Logic\Journaliser.Logic.csproj">
+      <Project>{E05C904D-C921-4B94-BC0F-5A6E0C2E65D5}</Project>
+      <Name>Journaliser.Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Journaliser\Journaliser.csproj">
       <Project>{ED0B8D6D-06C1-4D19-9106-458A2A1AAC66}</Project>
       <Name>Journaliser</Name>

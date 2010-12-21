@@ -10,10 +10,11 @@ namespace Journaliser.Logic.Data
     {
         T GetDocument<T>(string id) where T : IBaseDocument;
         string AddDocument<T>(T entry) where T : IBaseDocument;
+        void UpdateDocument<T>(T updatedDoc) where T : IBaseDocument;
         IEnumerable<T> GetEntriesByCreationDate<T>(DateTime fromDate, DateTime toDate, int maxRecords) where T : IBaseDocument;
         void DeleteDocument<T>(string id) where T : IBaseDocument;
         void DeleteDocument<T>(T entry) where T : IBaseDocument;
 
-        User GetUser(string username);
+        User GetUser(string username, string password);
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Journaliser.Logic.Domain.Model;
 using Journaliser.Logic.Data;
+using Journaliser.Logic.Common;
 
 namespace Journaliser.Logic.Domain.Security
 {
@@ -38,7 +39,8 @@ namespace Journaliser.Logic.Domain.Security
                 DateOfBirth = dateOfBirth,
                 Firstname = firstName,
                 Lastname = lastName,
-                Email = email
+                Email = email,
+                Owner = SystemConstants.SystemUserAccount
             };
             _repository.AddDocument<User>(user);
             return true;

@@ -81,6 +81,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\SystemConstants.cs" />
     <Compile Include="Domain\Model\BaseDocument.cs" />
     <Compile Include="Domain\Model\IBaseDocument.cs" />
     <Compile Include="Domain\Model\User.cs" />

@@ -16,5 +16,6 @@ namespace Journaliser.Logic.Data
         void DeleteDocument<T>(T entry) where T : IBaseDocument;
 
         User GetUser(string username, string password);
+        bool DoesUserDocumentExist(string username);
     }
 }

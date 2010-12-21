@@ -7,10 +7,10 @@ using Journaliser.Logic.Data;
 
 namespace Journaliser.Logic.Domain.Security
 {
-    public class UserAccountService
+    public class UserService : IMembershipService
     {
         IJournalRepository _repository;
-        public UserAccountService(IJournalRepository repository)
+        public UserService(IJournalRepository repository)
         {
             _repository = repository;
         }
@@ -23,15 +23,27 @@ namespace Journaliser.Logic.Domain.Security
             return (user != null);
         }
 
-        public bool CreateUser(User userToCreate)
+        public bool CreateUser(string userName, string password, DateTime? dateOfBirth, string firstName, string lastName, string email)
         {
-            if (userToCreate == null) throw new ArgumentException("Value cannot be null or empty.", "userToCreate");
-            if (String.IsNullOrEmpty(userToCreate.Username)) throw new ArgumentException("Value cannot be null or empty.", "userName");
-            if (String.IsNullOrEmpty(userToCreate.Password)) throw new ArgumentException("Value cannot be null or empty.", "password");
+            if (String.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
+            if (String.IsNullOrEmpty(password)) throw new ArgumentException("Value cannot be null or empty.", "password");
 
-            var id = _repository.AddDocument<User>(userToCreate);
-            return (!string.IsNullOrWhiteSpace(id));
+            if (_repository.DoesUserDocumentExist(userName))
+                return false;
+
+            var user = new User()
+            {
+                Username = userName,
+                Password = password,
+                DateOfBirth = dateOfBirth,
+                Firstname = firstName,
+                Lastname = lastName,
+                Email = email
+            };
+            _repository.AddDocument<User>(user);
+            return true;
         }
+
 
         public bool ChangePassword(string userName, string oldPassword, string newPassword)
         {
@@ -49,5 +61,12 @@ namespace Journaliser.Logic.Domain.Security
             throw new System.Security.SecurityException("Invalid credentials. Password could not be changed");
 
         }
+
+        public int MinPasswordLength
+        {
+            get { return MinimumPasswordLengthValue; }
+        }
+
+        public const int MinimumPasswordLengthValue = 8;
     }
 }

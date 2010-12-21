@@ -86,9 +86,10 @@
     <Compile Include="Domain\Model\User.cs" />
     <Compile Include="Domain\Security\FormsAuthenticationService.cs" />
     <Compile Include="Domain\Security\IFormsAuthenticationService.cs" />
+    <Compile Include="Domain\Security\IMembershipService.cs" />
     <Compile Include="Domain\Security\IUserAccountService.cs" />
-    <Compile Include="Domain\Security\UserAccountService.cs" />
-    <Compile Include="Domain\Security\UserModule.cs" />
+    <Compile Include="Domain\Security\UserService.cs" />
+    <Compile Include="Domain\Validation\ValidatePasswordLengthAttribute.cs" />
     <Compile Include="Properties\Config.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

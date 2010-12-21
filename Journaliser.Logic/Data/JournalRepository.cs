@@ -98,6 +98,14 @@ namespace Journaliser.Logic.Data
             }
         }
 
+        public bool DoesUserDocumentExist(string username)
+        {
+            using (var context = _documentStore.OpenSession())
+            {
+                return (context.Query<User>().Where(u => u.Username == username).Count() > 0);
+            }
+        }
+
         public void UpdateDocument<T>(T updatedDoc) where T : IBaseDocument
         {
             if (updatedDoc == null) throw new ArgumentNullException("Document to update cannot be null");

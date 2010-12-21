@@ -310,7 +310,7 @@ namespace Journaliser.Tests.Controllers
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
             Assert.AreEqual(model, viewResult.ViewData.Model);
-            Assert.AreEqual("Username already exists. Please enter a different user name.", controller.ModelState[""].Errors[0].ErrorMessage);
+            Assert.AreEqual("Unable to sign in. Check your details and try again", controller.ModelState[""].Errors[0].ErrorMessage);
             Assert.AreEqual(10, viewResult.ViewData["PasswordLength"]);
         }
 
@@ -426,23 +426,23 @@ namespace Journaliser.Tests.Controllers
                 return (userName == "someUser" && password == "goodPassword");
             }
 
-            public MembershipCreateStatus CreateUser(string userName, string password, string email)
+
+            public bool ChangePassword(string userName, string oldPassword, string newPassword)
+            {
+                return (userName == "someUser" && oldPassword == "goodOldPassword" && newPassword == "goodNewPassword");
+            }
+
+
+            public bool CreateUser(string userName, string password, DateTime? dateOfBirth, string firstName, string lastName, string email)
             {
                 if (userName == "duplicateUser")
-                {
-                    return MembershipCreateStatus.DuplicateUserName;
-                }
+                    return false;
 
                 // verify that values are what we expected
                 Assert.AreEqual("goodPassword", password);
                 Assert.AreEqual("goodEmail", email);
 
-                return MembershipCreateStatus.Success;
-            }
-
-            public bool ChangePassword(string userName, string oldPassword, string newPassword)
-            {
-                return (userName == "someUser" && oldPassword == "goodOldPassword" && newPassword == "goodNewPassword");
+                return true;
             }
         }
 

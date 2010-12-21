@@ -34,6 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Raven.Client.Lightweight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <HintPath>..\Dependencies\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
     <Reference Include="ScriptDependencyExtension">
       <HintPath>..\Dependencies\ScriptDependencyExtension.dll</HintPath>
     </Reference>

@@ -9,19 +9,23 @@ using System.Web.Routing;
 using System.Web.Security;
 using Journaliser.Models;
 using Journaliser.Logic.Domain.Security;
+using Journaliser.Logic.Data;
 
 namespace Journaliser.Controllers
 {
     public class AccountController : Controller
     {
-
         public IFormsAuthenticationService FormsService { get; set; }
         public IMembershipService MembershipService { get; set; }
+        public IJournalRepository Repository { get; set; }
+        public IRepositoryFactory DataRepositoryFactory { get; set; }
 
         protected override void Initialize(RequestContext requestContext)
         {
+            if (DataRepositoryFactory == null) { DataRepositoryFactory = new RepositoryFactory();}
+            if (Repository == null) { Repository = new JournalRepository(DataRepositoryFactory.CreateDocumentStore());}
             if (FormsService == null) { FormsService = new FormsAuthenticationService(); }
-            if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
+            if (MembershipService == null) { MembershipService = new UserService(Repository); }
 
             base.Initialize(requestContext);
         }
@@ -89,16 +93,16 @@ namespace Journaliser.Controllers
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
+                var createStatus = MembershipService.CreateUser(model.UserName, model.Password,null,null,null, model.Email);
 
-                if (createStatus == MembershipCreateStatus.Success)
+                if (createStatus == true)
                 {
                     FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
+                    ModelState.AddModelError("","Unable to sign in. Check your details and try again" );
                 }
             }
 

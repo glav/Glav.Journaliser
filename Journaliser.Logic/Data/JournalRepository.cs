@@ -102,7 +102,9 @@ namespace Journaliser.Logic.Data
         {
             using (var context = _documentStore.OpenSession())
             {
-                return (context.Query<User>().Where(u => u.Username == username).Count() > 0);
+                var query = context.Query<User>().Where(u => u.Username == username);
+                var userCount = query.FirstOrDefault();
+                return (userCount != null);
             }
         }
 

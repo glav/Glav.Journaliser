@@ -31,7 +31,7 @@
                     @{
                         if (Request.IsAuthenticated) 
                         { 
-                            <text><li class="@Journaliser.Models.Pages.AddToJournal">@Html.ActionLink("Add to your Journal","","")</li></text> 
+                            <text><li class="@Journaliser.Models.Pages.AddToJournal">@Html.ActionLink("Add to your Journal","AddToJournal","Journal")</li></text> 
                         }
                         if (!Request.IsAuthenticated)
                         { 

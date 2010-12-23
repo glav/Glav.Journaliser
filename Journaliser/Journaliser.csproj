@@ -127,11 +127,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Journal\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cache.manifest" />
     <Content Include="Views\ScriptTests\Index.cshtml" />
+    <Content Include="Views\Journal\AddToJournal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Journaliser.Logic\Journaliser.Logic.csproj">

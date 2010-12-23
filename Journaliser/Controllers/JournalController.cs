@@ -17,5 +17,10 @@ namespace Journaliser.Controllers
             return View();
         }
 
+        public ActionResult AddToJournal()
+        {
+            return View();
+        }
+
     }
 }

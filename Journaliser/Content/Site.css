@@ -67,7 +67,7 @@
             top: 10px;
         }
             #menucontainer ul li a {
-                color: #9999FF;
+                color: #BBBBFF;
             }
 
 
@@ -80,4 +80,11 @@
     margin:auto;
     padding:5px 15px;
     background:#FFFFFF;
+}
+
+/*************************
+** Validation and Errors **
+**************************/
+.validation-summary-errors ul li {
+    color:Red;
 }

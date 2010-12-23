@@ -27,19 +27,19 @@
             <div id="menucontainer">
 
                 <ul id="menu">
-                    <li class="home">@Html.ActionLink("Home", "Index", "Home",null, new { @class = "cache-link"} )</li>
+                    <li class="@Journaliser.Models.Pages.Home">@Html.ActionLink("Home", "Index", "Home",null, new { @class = "cache-link"} )</li>
                     @{
                         if (Request.IsAuthenticated) 
                         { 
-                            <text><li class="journal">@Html.ActionLink("Add to your Journal","","")</li></text> 
+                            <text><li class="@Journaliser.Models.Pages.AddToJournal">@Html.ActionLink("Add to your Journal","","")</li></text> 
                         }
                         if (!Request.IsAuthenticated)
                         { 
-                            <text><li class="signin">@Html.ActionLink("Sign In", "LogOn", "Account")</li></text> 
+                            <text><li class="@Journaliser.Models.Pages.SignIn">@Html.ActionLink("Sign In", "LogOn", "Account")</li></text> 
                         }
                     }
                     
-                    <li class="about">@Html.ActionLink("About", "About", "Home", null, new { @class = "cache-link" })</li>
+                    <li class="@Journaliser.Models.Pages.About">@Html.ActionLink("About", "About", "Home", null, new { @class = "cache-link" })</li>
                 </ul>
 
             </div>

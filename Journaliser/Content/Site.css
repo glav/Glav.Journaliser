@@ -20,6 +20,20 @@
     -webkit-border-radius:10px;
 }
 
+.field-data {
+    margin:5px 0;
+}
+
+    .field-data .editor-label {
+        width:160px;
+        float:left;
+    }
+    .field-data .editor-field {
+    }
+        .field-data .editor-field input {
+            width:200px;
+        }
+
 #status-links {
     float:right;
     position:relative;

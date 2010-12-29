@@ -14,7 +14,7 @@ $(document).ready(function () {
         var testEntry = { field1: "test", field2: "test2" };
         var actual = dal.storeJournalEntry(testEntry);
 
-        if (actual.field1 != actual.field1 === "test" || !actual._storageKey) {
+        if (actual.field1 != actual.field1 === "test" || !actual.Id) {
             addTestResult("testCanStore", "Failed - Retrieved entry from storage did not match.");
         }
 
@@ -32,15 +32,34 @@ $(document).ready(function () {
         var testEntry = { field1: "test", field2: "test2" };
         try {
             var tmpEntry = dal.storeJournalEntry(testEntry);
-            var key = tmpEntry._storageKey;
+            var key = tmpEntry.Id;
             var actual = dal.getJournalEntry(key);
-            if (actual && actual.field1 === "test" && actual._storageKey > 0) {
+            if (actual && actual.field1 === "test" && actual.Id > 0) {
                 addTestResult("testCanRetrieve", "Passed");
             } else {
                 addTestResult("testCanRetrieve", "Failed");
             }
         } catch (e) {
             addTestResult("testCanRetrieve", "Failed with Exception [" + e + "]");
+        }
+        dal.clearAllEntries();
+    }
+
+    function testCanUpdate() {
+        var dal = new DataLayer();
+        var testEntry = { field1: "test", field2: "test2" };
+        try {
+            var tmpEntry = dal.storeJournalEntry(testEntry);
+            tmpEntry.field1 = "Updated";
+            dal.updateJournalEntry(tmpEntry);
+            var actual = dal.getJournalEntry(tmpEntry.Id);
+            if (actual && actual.field1 === "Updated") {
+                addTestResult("testCanUpdate", "Passed");
+            } else {
+                addTestResult("testCanUpdate", "Failed");
+            }
+        } catch (e) {
+            addTestResult("testCanUpdate", "Failed with Exception [" + e + "]");
         }
         dal.clearAllEntries();
     }
@@ -89,6 +108,7 @@ $(document).ready(function () {
     function runAllTests() {
         testCanStore();
         testCanRetrieve();
+        testCanUpdate();
         testGetAllEntriesAndClearAllEntries();
     }
 

@@ -73,11 +73,15 @@ DataLayer.prototype = {
 
     storeJournalEntry: function (entry) {
         var key = this._index.lastIdUsed + 1;
-        entry._storageKey = key;
+        entry.Id = key;
         this._storage.setItem(key, JSON.stringify(entry));
         this._index.lastIdUsed = key;
         this._updateIndexToStore();
         return entry;
+    },
+
+    updateJournalEntry: function (entry) {
+        this._storage.setItem(entry.Id, JSON.stringify(entry));
     },
 
     getJournalEntry: function (id) {

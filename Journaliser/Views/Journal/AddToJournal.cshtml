@@ -4,6 +4,8 @@
     ViewBag.Title = "Add To Journal";
 }
 
+    @ScriptDependencyExtension.ScriptHelper.RequiresScripts("jQuery-validate-unobtrusive", "Main")
+
 <input type="hidden" id="page-id" value="@Journaliser.Models.Pages.AddToJournal" />
 
 <h2>Add A Journal Entry</h2>
@@ -54,7 +56,7 @@
                 @Html.LabelFor(model => model.BodyText)
             </div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.BodyText)
+                @Html.TextAreaFor(model => model.BodyText)
                 @Html.ValidationMessageFor(model => model.BodyText)
             </div>
         </div>

@@ -80,6 +80,7 @@
     <Content Include="Offline\Fallback.htm" />
     <Content Include="Offline\Home.htm" />
     <Content Include="ScriptDependencies.xml" />
+    <Content Include="Scripts\HTML5Support\AddToJournal.js" />
     <Content Include="Scripts\HTML5Support\CacheManager.js" />
     <Content Include="Scripts\HTML5Support\DataLayer.js" />
     <Content Include="Scripts\HTML5Support\RuntimeSettings.js" />

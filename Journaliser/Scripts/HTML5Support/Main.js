@@ -11,6 +11,7 @@ $(document).ready(function () {
 
     var offlineLinks = ["offline/Home.htm", "offline/About.htm"];
     var onlineLinks = ["", "Home/About"];
+
     function mapLinks(status) {
         var arrLen = offlineLinks.length;
         $(".cache-link").each(function () {

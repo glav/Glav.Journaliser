@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Dependencies ReleaseSuffix="min" DebugSuffix="">
 
+  <Dependency Name="AddToJournal" Type="js">
+    <ScriptFile>~/Scripts/AddToJournal.js</ScriptFile>
+    <RequiredDependencies>
+      <Name>Html5Scripts</Name>
+    </RequiredDependencies>
+  </Dependency>
+
   <Dependency Name="jQuery-validate-unobtrusive" Type="js">
     <ScriptFile>~/Scripts/jquery.validate.unobtrusive.js</ScriptFile>
     <RequiredDependencies>

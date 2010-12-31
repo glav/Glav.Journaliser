@@ -86,7 +86,9 @@
     <Compile Include="Domain\Model\IBaseDocument.cs" />
     <Compile Include="Domain\Model\User.cs" />
     <Compile Include="Domain\Security\FormsAuthenticationService.cs" />
+    <Compile Include="Domain\Security\IdentityService.cs" />
     <Compile Include="Domain\Security\IFormsAuthenticationService.cs" />
+    <Compile Include="Domain\Security\IIdentityService.cs" />
     <Compile Include="Domain\Security\IMembershipService.cs" />
     <Compile Include="Domain\Security\IUserAccountService.cs" />
     <Compile Include="Domain\Security\UserService.cs" />

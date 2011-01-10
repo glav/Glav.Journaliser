@@ -2,17 +2,18 @@
 <Dependencies ReleaseSuffix="min" DebugSuffix="">
 
   <Dependency Name="AddToJournal" Type="js">
-    <ScriptFile>~/Scripts/AddToJournal.js</ScriptFile>
+    <ScriptFile>~/Scripts/Html5Support/AddToJournal.js</ScriptFile>
     <RequiredDependencies>
       <Name>Html5Scripts</Name>
+      <Name>Main</Name>
     </RequiredDependencies>
   </Dependency>
 
   <Dependency Name="jQuery-validate-unobtrusive" Type="js">
     <ScriptFile>~/Scripts/jquery.validate.unobtrusive.js</ScriptFile>
     <RequiredDependencies>
-      <Name>jquery</Name>
       <Name>jQuery-validate</Name>
+      <Name>jquery</Name>
     </RequiredDependencies>
   </Dependency>
 
@@ -44,18 +45,17 @@
   <Dependency Name="Main" Type="js">
     <ScriptFile>~/Scripts/HTML5Support/Main.js</ScriptFile>
     <RequiredDependencies>
-      <Name>JournalModule</Name>
       <Name>Html5Scripts</Name>
     </RequiredDependencies>
   </Dependency>
 
   <Dependency Name="Html5Scripts" Type="js">
     <RequiredDependencies>
-      <Name>CacheManager</Name>
       <Name>jquery</Name>
+      <Name>Runtime</Name>
+      <Name>CacheManager</Name>
       <Name>NetworkStatus</Name>
       <Name>DataLayer</Name>
-      <Name>Runtime</Name>
     </RequiredDependencies>
   </Dependency>
 
@@ -84,13 +84,6 @@
 
   <Dependency Name="Runtime" Type="js">
     <ScriptFile>~/Scripts/HTML5Support/RuntimeSettings.js</ScriptFile>
-  </Dependency>
-
-  <Dependency Name="JournalModule" Type="js">
-    <RequiredDependencies>
-      <Name>Html5Scripts</Name>
-      <Name>jquery</Name>
-    </RequiredDependencies>
   </Dependency>
 
 </Dependencies>

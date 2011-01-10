@@ -32,6 +32,7 @@ namespace Journaliser.Controllers
         //
         // GET: /Journal/
 
+        [Authorize]
         public ActionResult AddToJournal()
         {
             JournalEntry entry = new JournalEntry();
@@ -39,6 +40,7 @@ namespace Journaliser.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult AddToJournal(JournalEntry entry)
         {
             if (ModelState.IsValid)

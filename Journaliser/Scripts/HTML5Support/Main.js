@@ -5,9 +5,10 @@
 /// <reference path="CacheManager.js" />
 /// <reference path="NetworkStatus.js" />
 
+var _netStatus = new NetworkStatus();
+var _cacheManager = new CacheManager();
+
 $(document).ready(function () {
-    var cacheManager = new CacheManager();
-    var netStatus = new NetworkStatus();
 
     var offlineLinks = ["offline/Home.htm", "offline/About.htm"];
     var onlineLinks = ["", "Home/About"];
@@ -52,7 +53,7 @@ $(document).ready(function () {
         mapLinks('offline');
     }
 
-    netStatus.addNetworkStatusChangedHandler(function (args) {
+    _netStatus.addNetworkStatusChangedHandler(function (args) {
 
         if (!args.hasError) {
             if (args.isOnline) {
@@ -74,7 +75,7 @@ $(document).ready(function () {
 
     }
 
-    netStatus.startMonitoring({ pingUrl: _runtime.rootPath + "scripts/ping.js", enablePolling: true });
+    _netStatus.startMonitoring({ pingUrl: _runtime.rootPath + "scripts/ping.js", enablePolling: true });
 
     bindMenuLinkStyles();
 

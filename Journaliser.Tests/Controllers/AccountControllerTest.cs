@@ -9,6 +9,9 @@ using Journaliser;
 using Journaliser.Controllers;
 using Journaliser.Models;
 using Journaliser.Logic.Domain.Security;
+using Journaliser.Logic.Data;
+using Moq;
+using Raven.Client;
 
 namespace Journaliser.Tests.Controllers
 {
@@ -341,11 +344,11 @@ namespace Journaliser.Tests.Controllers
         private static AccountController GetAccountController()
         {
             RequestContext requestContext = new RequestContext(new MockHttpContext(), new RouteData());
-            AccountController controller = new AccountController()
+
+            var mockDocStore = new Mock<IDocumentStore>();
+            AccountController controller = new AccountController(new MockFormsAuthenticationService(), new MockMembershipService(),new JournalRepository(mockDocStore.Object))
             {
-                FormsService = new MockFormsAuthenticationService(),
-                MembershipService = new MockMembershipService(),
-                Url = new UrlHelper(requestContext),
+                Url = new UrlHelper(requestContext)
             };
             controller.ControllerContext = new ControllerContext()
             {
@@ -445,6 +448,7 @@ namespace Journaliser.Tests.Controllers
                 return true;
             }
         }
+
 
     }
 }

@@ -18,16 +18,12 @@ namespace Journaliser.Controllers
         public IFormsAuthenticationService FormsService { get; set; }
         public IMembershipService MembershipService { get; set; }
         public IJournalRepository Repository { get; set; }
-        public IRepositoryFactory DataRepositoryFactory { get; set; }
 
-        protected override void Initialize(RequestContext requestContext)
+        public AccountController(IFormsAuthenticationService formsService, IMembershipService membershipService, IJournalRepository repository)
         {
-            if (DataRepositoryFactory == null) { DataRepositoryFactory = new RepositoryFactory();}
-            if (Repository == null) { Repository = new JournalRepository(DataRepositoryFactory.CreateDocumentStore());}
-            if (FormsService == null) { FormsService = new FormsAuthenticationService(); }
-            if (MembershipService == null) { MembershipService = new UserService(Repository); }
-
-            base.Initialize(requestContext);
+            FormsService = formsService;
+            MembershipService = membershipService;
+            Repository = repository;
         }
 
         // **************************************

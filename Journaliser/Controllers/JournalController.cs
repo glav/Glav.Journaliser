@@ -12,16 +12,9 @@ namespace Journaliser.Controllers
 {
     public class JournalController : Controller
     {
-        IJournalRepository _repository;
-        IRepositoryFactory _repoFactory;
-        IIdentityService _identitySvc;
-
-        public JournalController()
-        {
-            _repoFactory = new RepositoryFactory();
-            _repository = new JournalRepository(_repoFactory.CreateDocumentStore());
-            _identitySvc = new IdentityService();
-        }
+        readonly IJournalRepository _repository;
+        readonly IRepositoryFactory _repoFactory;
+        readonly IIdentityService _identitySvc;
 
         public JournalController(IRepositoryFactory repoFactory, IJournalRepository repository, IIdentityService identitySvc)
         {

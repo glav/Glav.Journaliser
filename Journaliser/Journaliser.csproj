@@ -34,6 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.1.0.76\lib\40\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="Raven.Client.Lightweight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <HintPath>..\Dependencies\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
@@ -134,6 +137,7 @@
     <None Include="cache.manifest" />
     <Content Include="Views\ScriptTests\Index.cshtml" />
     <Content Include="Views\Journal\AddToJournal.cshtml" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Journaliser.Logic\Journaliser.Logic.csproj">

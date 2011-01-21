@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Security.Principal;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.Security;
-using Journaliser.Models;
-using Journaliser.Logic.Domain.Security;
+﻿using System.Web.Mvc;
 using Journaliser.Logic.Data;
+using Journaliser.Logic.Domain.Security;
+using Journaliser.Models;
 
 namespace Journaliser.Controllers
 {

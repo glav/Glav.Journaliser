@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 using Journaliser.Logic.Common;
 using Journaliser.Logic.Data;
 using Journaliser.Logic.Domain.Security;
 using Raven.Client;
-using Raven.Client.Document;
+using Journaliser.Logic.Domain.Serialisation;
 
 namespace Journaliser
 {
@@ -59,6 +55,7 @@ namespace Journaliser
             kernel.Bind<IIdentityService>().To<IdentityService>();
             kernel.Bind<IMembershipService>().To<UserService>();
             kernel.Bind<IFormsAuthenticationService>().To<FormsAuthenticationService>();
+            kernel.Bind<IModelSerialiser>().To<JsonModelSerialiser>();
 
 
         }

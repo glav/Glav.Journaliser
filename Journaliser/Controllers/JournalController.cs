@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Journaliser.Logic.Domain.Model;
+﻿using System.Web.Mvc;
 using Journaliser.Logic.Data;
-using Raven.Client;
+using Journaliser.Logic.Domain.Model;
 using Journaliser.Logic.Domain.Security;
 
 namespace Journaliser.Controllers

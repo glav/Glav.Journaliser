@@ -73,6 +73,7 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -96,6 +97,8 @@
     <Compile Include="Domain\Security\IMembershipService.cs" />
     <Compile Include="Domain\Security\IUserAccountService.cs" />
     <Compile Include="Domain\Security\UserService.cs" />
+    <Compile Include="Domain\Serialisation\IModelSerialiser.cs" />
+    <Compile Include="Domain\Serialisation\JsonModelSerialiser.cs" />
     <Compile Include="Domain\Validation\ValidatePasswordLengthAttribute.cs" />
     <Compile Include="Properties\Config.Designer.cs">
       <AutoGen>True</AutoGen>

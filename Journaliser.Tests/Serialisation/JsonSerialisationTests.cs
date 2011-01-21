@@ -15,7 +15,9 @@ namespace Journaliser.Tests.Serialisation
         [TestMethod]
         public void EnsureObjectCreatableJsonIsEmitted()
         {
-            const string expectedResult = "var __JournalEntry = {\"CreatedDate\":\"\\/Date(1295571278503+1100)\\/\",\"Id\":\"1\",\"ModifiedDate\":null,\"Owner\":\"test\",\"BodyText\":null,\"LastModifiedDate\":null,\"Title\":\"test title\",\"Visibility\":0}";
+            // Example Expected Result (however date value will be different)
+            // "var __JournalEntry = {\"CreatedDate\":\"\\/Date(1295571278503+1100)\\/\",\"Id\":\"1\",\"ModifiedDate\":null,\"Owner\":\"test\",\"BodyText\":null,\"LastModifiedDate\":null,\"Title\":\"test title\",\"Visibility\":0}";
+            
             var model = new JournalEntry()
             {
                 Id = "1",

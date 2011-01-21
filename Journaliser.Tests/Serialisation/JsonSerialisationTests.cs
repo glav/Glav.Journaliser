@@ -47,6 +47,7 @@ namespace Journaliser.Tests.Serialisation
             var result = serialiser.AddCreateObjectHelperRoutineToModelDefinition("JournalEntry");
 
             Assert.IsFalse(string.IsNullOrWhiteSpace(result));
+            Assert.IsTrue(result.Contains("function JournalEntryCreator() {"));
         }
     }
 }

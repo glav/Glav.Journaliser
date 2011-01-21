@@ -18,6 +18,9 @@ namespace Journaliser.Logic.Domain.Serialisation
 
         public string AddCreateObjectHelperRoutineToModelDefinition(string jsonObject, string modelObjectName)
         {
+            //Note: The method below is outputting a function that returns an object literal. 
+            //      Ideally, this should be using the Object.create function but this is not present in many browsers
+            //      and is only part of the latest ECMAScript spec
             string objCreator = "function " + modelObjectName + "ModelCreator() { return " + jsonObject + "; }";
             return objCreator;
         }

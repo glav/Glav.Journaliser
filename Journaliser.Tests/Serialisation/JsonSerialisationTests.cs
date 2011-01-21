@@ -29,7 +29,6 @@ namespace Journaliser.Tests.Serialisation
             var result = serialiser.CreateJsonModelDefinition<JournalEntry>(model,"JournalEntry");
 
            Assert.IsFalse(string.IsNullOrWhiteSpace(result));
-           Assert.IsTrue(result.Contains("var __JournalEntry = {\"CreatedDate\""));
            Assert.IsTrue(result.Contains("\"Id\":\"1\",\"ModifiedDate\":null,\"Owner\":\"test\",\"BodyText\":null,\"LastModifiedDate\":null,\"Title\":\"test title\",\"Visibility\":0}"));
         }
         [TestMethod]
@@ -47,7 +46,7 @@ namespace Journaliser.Tests.Serialisation
             var result = serialiser.AddCreateObjectHelperRoutineToModelDefinition(scriptObj, "JournalEntry");
 
             Assert.IsFalse(string.IsNullOrWhiteSpace(result));
-            Assert.IsTrue(result.Contains("function JournalEntryCreator() {"));
+            Assert.IsTrue(result.Contains("function JournalEntryModelCreator() {"));
         }
     }
 }

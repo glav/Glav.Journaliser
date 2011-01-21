@@ -44,7 +44,7 @@ namespace Journaliser.Tests.Serialisation
 
             var serialiser = new JsonModelSerialiser();
             var scriptObj = serialiser.CreateJsonModelDefinition<JournalEntry>(model, "JournalEntry");
-            var result = serialiser.AddCreateObjectHelperRoutineToModelDefinition("JournalEntry");
+            var result = serialiser.AddCreateObjectHelperRoutineToModelDefinition(scriptObj, "JournalEntry");
 
             Assert.IsFalse(string.IsNullOrWhiteSpace(result));
             Assert.IsTrue(result.Contains("function JournalEntryCreator() {"));

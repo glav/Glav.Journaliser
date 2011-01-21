@@ -3,6 +3,7 @@
 <head>
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    @Journaliser.Helpers.JsonHelper.WriteJournalEntryJsonDefintion()
     @ScriptDependencyExtension.ScriptHelper.RequiresScripts("jQuery-validate-unobtrusive","Main","AddToJournal")
     
 </head>

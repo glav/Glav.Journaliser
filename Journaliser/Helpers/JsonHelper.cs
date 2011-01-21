@@ -10,7 +10,7 @@ namespace Journaliser.Helpers
 {
     public static class JsonHelper
     {
-        public static string WriteJournalEntryJsonDefintion()
+        public static MvcHtmlString WriteJournalEntryJsonDefintion()
         {
             const string modelType = "JournalEntry";
 
@@ -18,9 +18,9 @@ namespace Journaliser.Helpers
 
             var blankEntry = new JournalEntry();
             string jsObject = serialiserSvc.CreateJsonModelDefinition<JournalEntry>(blankEntry, modelType);
-            string createFunction = serialiserSvc.AddCreateObjectHelperRoutineToModelDefinition(modelType);
+            string createFunction = serialiserSvc.AddCreateObjectHelperRoutineToModelDefinition(jsObject, modelType);
 
-            return createFunction;
+            return MvcHtmlString.Create(string.Format("<script type=\"text/javascript\">{0}</script>",createFunction));
         }
     }
 }

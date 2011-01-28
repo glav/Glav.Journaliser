@@ -22,7 +22,7 @@ $(document).ready(function () {
         var dal = new DataLayer();
         dal.storeJournalEntry(offlineDoc);
         var numEntries = dal.getNumberOfStoredItems();
-        alert('Journal Entry stored offline. When the app is inline, the data will be synchronised with the server. You have ' +numEntries + ' waiting to be synced');
+        alert('Journal Entry stored offline. When the app is inline, the data will be synchronised with the server. You have ' + numEntries + ' waiting to be synced');
     }
 
     function bindAddJournalEntryButton() {
@@ -36,5 +36,25 @@ $(document).ready(function () {
         });
     }
 
+    function redirectAddToJournalButton(isOnline) {
+        if (isOnline && isOnline === true) {
+            $("#add-journal-entry").unbind();
+        } else {
+            $("#add-journal-entry").click(function () {
+                alert('need to store offline');
+                return false;
+            });
+        }
+    }
+
     bindAddJournalEntryButton();
+    _netStatus.addNetworkStatusChangedHandler(function (args) {
+
+        if (!args.hasError) {
+            redirectAddToJournalButton(args.isOnline);
+        } else {
+            alert('There was an error checking Network Status: ' + args.errorMessage);
+        }
+    });
+
 });

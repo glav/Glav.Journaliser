@@ -37,11 +37,27 @@ $(document).ready(function () {
     }
 
     function redirectAddToJournalButton(isOnline) {
+        var dal = new DataLayer();
         if (isOnline && isOnline === true) {
+            var numItems = dal.getNumberOfStoredItems();
+            if (numItems > 0) {
+                alert('You have ' + num  items stored locally. You need to synchronise');
+            }
             $("#add-journal-entry").unbind();
         } else {
-            $("#add-journal-entry").click(function () {
-                alert('need to store offline');
+            $("#add-journal-entry").unbind().click(function () {
+                var newEntity = JournalEntryModelCreator();
+
+                newEntity.BodyText = $("#Title").val();
+                newEntity.Title = $("BodyText").val();
+
+                dal.storeJournalEntry(newEntity);
+                var numItems = dal.getNumberOfStoredItems();
+                alert('Entry Stored to local storage. You currently have ' + numItems + ' items stored locally and awaiting synchronisatin.');
+
+                $("#Title").val("");
+                $("#BodyText").val("");
+
                 return false;
             });
         }

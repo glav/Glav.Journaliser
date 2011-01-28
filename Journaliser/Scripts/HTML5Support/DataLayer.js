@@ -10,7 +10,7 @@ function DataLayer() {
         this._storageEnabled = false;
     }
 
-    
+
     if (this._storageEnabled === false) {
         alert('Local Storage not available within this browser');
     } else {
@@ -24,19 +24,19 @@ function DataLayer() {
 
 DataLayer.prototype = {
     _updateIndexFromStore: function () {
+        var indexKey = "docIndex";
         var index;
 
 
-        if (this._index) {
-            index = JSON.parse(this._storage.getItem(this._index.key));
-        }
+        index = JSON.parse(this._storage.getItem(indexKey));
+
         if (index) {
             this._index = index;
         } else {
             this._index = {
                 lastUpdate: null,
                 lastIdUsed: 0,
-                key: "docIndex"
+                key: indexKey
             };
             this._storage.setItem(this._index.key, JSON.stringify(this._index));
         }
@@ -72,6 +72,7 @@ DataLayer.prototype = {
     },
 
     storeJournalEntry: function (entry) {
+        this._updateIndexFromStore();
         var key = this._index.lastIdUsed + 1;
         entry.Id = key;
         this._storage.setItem(key, JSON.stringify(entry));

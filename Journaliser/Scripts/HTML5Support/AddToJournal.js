@@ -41,7 +41,7 @@ $(document).ready(function () {
         if (isOnline && isOnline === true) {
             var numItems = dal.getNumberOfStoredItems();
             if (numItems > 0) {
-                alert('You have ' + num  items stored locally. You need to synchronise');
+                alert('You have ' + num + ' items stored locally. You need to synchronise');
             }
             $("#add-journal-entry").unbind();
         } else {

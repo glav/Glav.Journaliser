@@ -35,8 +35,7 @@ namespace Journaliser.Controllers
             {
                 entry.Owner = _identitySvc.GetCurrentUsername();
                 _repository.AddDocument<JournalEntry>(entry);
-                entry = new JournalEntry();
-                return View(entry);
+                return RedirectToAction("AddToJournal");
             }
             else
             {

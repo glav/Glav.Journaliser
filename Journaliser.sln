@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencie
 	ProjectSection(SolutionItems) = preProject
 		Dependencies\Moq.dll = Dependencies\Moq.dll
 		Dependencies\Newtonsoft.Json.dll = Dependencies\Newtonsoft.Json.dll
+		Dependencies\Ninject.dll = Dependencies\Ninject.dll
 		Dependencies\Raven.Abstractions.dll = Dependencies\Raven.Abstractions.dll
 		Dependencies\Raven.Client.Lightweight.dll = Dependencies\Raven.Client.Lightweight.dll
 		Dependencies\Raven.Client.Lightweight.xml = Dependencies\Raven.Client.Lightweight.xml

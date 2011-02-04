@@ -42,6 +42,11 @@ DataLayer.prototype = {
         }
     },
 
+
+    synchroniseWithServer: function (successCallback, errorCallback) {
+        alert('not complete yet');
+    },
+
     _updateIndexToStore: function () {
         this._index.lastUpdate = new Date();
         this._storage.setItem(this._index.key, JSON.stringify(this._index));

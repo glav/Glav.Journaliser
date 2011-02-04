@@ -96,6 +96,19 @@
     background:#FFFFFF;
 }
 
+#sync-message {
+    color:Lime;
+    float: left;
+    font-size: 0.8em;
+    margin: 20px 30px;
+    width: 200px;
+}
+#sync-message a, #sync-message a:hover,#sync-message a:visited {
+    color:Red;
+    font-weight:bold;
+    margin-left:30px;
+}
+
 /*************************
 ** Validation and Errors **
 **************************/

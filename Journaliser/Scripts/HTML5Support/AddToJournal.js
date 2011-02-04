@@ -21,12 +21,38 @@ $(document).ready(function () {
 
     function redirectAddToJournalButton(isOnline) {
         var dal = new DataLayer();
-        if (isOnline && isOnline === true) {
-            $("#add-journal-entry").unbind();
-            var numItems = dal.getNumberOfStoredItems();
-            if (numItems > 0) {
-                alert('You have ' + numItems + ' items stored locally. You need to synchronise');
+        var numItems = dal.getNumberOfStoredItems();
+        if (numItems > 0) {
+            $("#sync-message span")
+                    .text("You have " + numItems + " items stored locally. You need to synchronise")
+                    .css("color", "yellow");
+            if (isOnline === true) {
+                $("#sync-message a")
+                    .slideDown('slow')
+                    .unbind()
+                    .click(function () {
+                        dal.synchroniseWithServer(function () {
+                            alert('it worked!');
+                        }, function () {
+                            alert(' sync failed');
+                        });
+                    });
+            } else {
+                $("#sync-message a")
+                            .unbind()
+                            .slideUp('slow');
             }
+        } else {
+            $("#sync-message span")
+                    .text("All items are synchronised.")
+                    .css("color", "lime");
+            $("#sync-message a")
+                    .slideUp('slow')
+                    .unbind();
+        }
+
+        if (isOnline === true) {
+            $("#add-journal-entry").unbind();
         } else {
             $("#add-journal-entry").unbind().click(function () {
                 var newEntity = JournalEntryModelCreator();
@@ -35,8 +61,6 @@ $(document).ready(function () {
                 newEntity.Title = $("BodyText").val();
 
                 dal.storeJournalEntry(newEntity);
-                var numItems = dal.getNumberOfStoredItems();
-                alert('Entry Stored to local storage. You currently have ' + numItems + ' items stored locally and awaiting synchronisatin.');
 
                 $("#Title").val("");
                 $("#BodyText").val("");

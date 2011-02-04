@@ -57,8 +57,8 @@ $(document).ready(function () {
             $("#add-journal-entry").unbind().click(function () {
                 var newEntity = JournalEntryModelCreator();
 
-                newEntity.BodyText = $("#Title").val();
-                newEntity.Title = $("BodyText").val();
+                newEntity.BodyText = $("#BodyText").val();
+                newEntity.Title = $("#Title").val();
 
                 dal.storeJournalEntry(newEntity);
 

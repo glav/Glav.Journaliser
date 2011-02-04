@@ -44,6 +44,17 @@ DataLayer.prototype = {
 
 
     synchroniseWithServer: function (successCallback, errorCallback) {
+        var allEntries = this.getAllJournalEntries();
+        for (var cnt = 0; cnt < allEntries.length; cnt++) {
+            var entry = allEntries[cnt];
+            $.ajax({
+                url: "AddToJournal",
+                type: "POST",
+                success: successCallback,
+                error: errorCallback,
+                data: entry
+            });
+        }
         alert('not complete yet');
     },
 

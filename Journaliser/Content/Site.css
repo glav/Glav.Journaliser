@@ -110,6 +110,13 @@
     display:none;
 }
 
+#sync-message span.status {
+    display:none;
+    font-size: 0.9em;
+    color:Silver; 
+    padding: 5px 0px;   
+}
+
 /*************************
 ** Validation and Errors **
 **************************/

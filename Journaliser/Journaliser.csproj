@@ -139,6 +139,7 @@
     <Content Include="Views\ScriptTests\Index.cshtml" />
     <Content Include="Views\Journal\AddToJournal.cshtml" />
     <Content Include="packages.config" />
+    <Content Include="Views\Journal\AddToJournalSyncResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Journaliser.Logic\Journaliser.Logic.csproj">

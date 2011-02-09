@@ -43,5 +43,36 @@ namespace Journaliser.Controllers
             }
         }
 
+        [HttpPost]
+        [Authorize]
+        public ActionResult SyncJournal(JournalEntry entry)
+        {
+            if (ModelState.IsValid ||
+                (!ModelState.IsValid && CheckForValidityInOfflineObject(entry) == true))
+            {
+                entry.Owner = _identitySvc.GetCurrentUsername();
+                _repository.AddDocument<JournalEntry>(entry);
+                ViewBag.SyncResult = "OK";
+                return View("AddToJournalSyncResult");
+            }
+            else
+            {
+                ViewBag.SyncResult = "ERROR";
+                return View("AddToJournalSyncResult");
+            }
+        }
+
+        private bool CheckForValidityInOfflineObject(JournalEntry entry)
+        {
+            if (entry.LastModifiedDate == null && entry.ModifiedDate == null
+                    && !string.IsNullOrWhiteSpace(entry.Title)
+                    && entry.Title.ToLowerInvariant() != "null"
+                    && !string.IsNullOrWhiteSpace(entry.Owner)
+                    && entry.Owner.ToLowerInvariant() != "null")
+                return true;
+            else
+                return false;
+        }
+
     }
 }

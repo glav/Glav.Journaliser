@@ -19,11 +19,19 @@ $(document).ready(function () {
         });
     }
 
+    function removeEntryFromLocalCache(entry, numEntriesLeftInLocalStore) {
+        debugger;
+        var dal = new DataLayer();
+        //todo. dal.removeitem....
+        var msg = "'Entry" + ": " + entry.Title + "' has been synchronised. There are " + numEntriesLeftInLocalStore + " entries left to synchronise";
+        $("#sync-message span.status").text(msg).css("display", "block");
+    }
+
     function redirectAddToJournalButton(isOnline) {
         var dal = new DataLayer();
         var numItems = dal.getNumberOfStoredItems();
         if (numItems > 0) {
-            $("#sync-message span")
+            $("#sync-message span.message")
                     .text("You have " + numItems + " items stored locally. You need to synchronise")
                     .css("color", "yellow");
             if (isOnline === true) {
@@ -31,10 +39,15 @@ $(document).ready(function () {
                     .slideDown('slow')
                     .unbind()
                     .click(function () {
-                        dal.synchroniseWithServer(function () {
-                            alert('it worked!');
-                        }, function () {
-                            alert(' sync failed');
+                        $("#sync-message span.status").fadeIn();
+                        dal.synchroniseWithServer(function (syncedEntry, numEntriesLeftInLocalStore) {
+                            removeEntryFromLocalCache(syncedEntry, numEntriesLeftInLocalStore);
+                        }, function (err, entry, numEntriesLeftInLocalStore) {
+                            if (err.status == 200 && err.statusText == "OK") {
+                                removeEntryFromLocalCache(entry,numEntriesLeftInLocalStore);
+                            } else {
+                                alert(' sync failed');
+                            }
                         });
                     });
             } else {

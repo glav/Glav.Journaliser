@@ -42,20 +42,32 @@ DataLayer.prototype = {
         }
     },
 
+    syncSuccessCallbackProxy: function (syncedEntry, successCallback) {
+        // todo: remove item here
+        var allEntries = this.getAllJournalEntries();
+        successCallback(entry, allEntries.length);
+    },
+
+    syncErrorCallbackProxy: function (e, syncedEntry, errorCallback) {
+        // todo: remove item here
+        var allEntries = this.getAllJournalEntries();
+        errorCallback(e, entry, allEntries.length);
+    },
 
     synchroniseWithServer: function (successCallback, errorCallback) {
+        var $this = this;
         var allEntries = this.getAllJournalEntries();
         for (var cnt = 0; cnt < allEntries.length; cnt++) {
             var entry = allEntries[cnt];
+
             $.ajax({
-                url: "AddToJournal",
+                url: "SyncJournal",
                 type: "POST",
-                success: successCallback,
-                error: errorCallback,
+                success: function () { $this.syncSuccessCallbackProxy(entry, successCallback); },
+                error: function (e) { $this.syncErrorCallbackProxy(e, entry, errorCallback); },
                 data: entry
             });
         }
-        alert('not complete yet');
     },
 
     _updateIndexToStore: function () {

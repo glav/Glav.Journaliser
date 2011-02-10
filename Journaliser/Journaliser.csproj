@@ -83,7 +83,9 @@
     <Content Include="Offline\About.htm" />
     <Content Include="Offline\Fallback.htm" />
     <Content Include="Offline\Home.htm" />
-    <Content Include="ScriptDependencies.xml" />
+    <Content Include="ScriptDependencies.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\HTML5Support\AddToJournal.js" />
     <Content Include="Scripts\HTML5Support\CacheManager.js" />
     <Content Include="Scripts\HTML5Support\DataLayer.js" />

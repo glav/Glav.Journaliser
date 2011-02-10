@@ -68,7 +68,7 @@ namespace Journaliser.Controllers
                     && !string.IsNullOrWhiteSpace(entry.Title)
                     && entry.Title.ToLowerInvariant() != "null"
                     && !string.IsNullOrWhiteSpace(entry.Owner)
-                    && entry.Owner.ToLowerInvariant() != "null")
+                    && entry.Owner.ToLowerInvariant() == "null")
                 return true;
             else
                 return false;

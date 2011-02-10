@@ -16,7 +16,6 @@ function DataLayer() {
     } else {
         this._storage = window.localStorage;
     }
-
     // Initialise our index
     this._index = null;
     this._updateIndexFromStore();
@@ -42,20 +41,32 @@ DataLayer.prototype = {
         }
     },
 
+    deleteJournalEntry: function (id) {
+        this._updateIndexFromStore();
+        var item = this.getJournalEntry(id);
+        if (item && item != null && item.Id === id) {
+            this._storage.removeItem(id);
+            var key = this._index.lastIdUsed - 1;
+            this._index.lastIdUsed = key;
+            this._updateIndexToStore();
+        }
+    },
+
     syncSuccessCallbackProxy: function (syncedEntry, successCallback) {
-        // todo: remove item here
+        this.deleteJournalEntry(syncedEntry.Id);
         var allEntries = this.getAllJournalEntries();
         successCallback(entry, allEntries.length);
     },
 
     syncErrorCallbackProxy: function (e, syncedEntry, errorCallback) {
-        // todo: remove item here
+        this.deleteJournalEntry(syncedEntry.Id);
         var allEntries = this.getAllJournalEntries();
-        errorCallback(e, entry, allEntries.length);
+        errorCallback(e, syncedEntry, allEntries.length);
     },
 
     synchroniseWithServer: function (successCallback, errorCallback) {
         var $this = this;
+        var thisErrorCallback = errorCallback;
         var allEntries = this.getAllJournalEntries();
         for (var cnt = 0; cnt < allEntries.length; cnt++) {
             var entry = allEntries[cnt];
@@ -63,8 +74,8 @@ DataLayer.prototype = {
             $.ajax({
                 url: "SyncJournal",
                 type: "POST",
-                success: function () { $this.syncSuccessCallbackProxy(entry, successCallback); },
-                error: function (e) { $this.syncErrorCallbackProxy(e, entry, errorCallback); },
+                success: function (entry, successCallback) { $this.syncSuccessCallbackProxy(entry, successCallback); },
+                error: function (e) { $this.syncErrorCallbackProxy(e, entry, thisErrorCallback); },
                 data: entry
             });
         }
@@ -121,6 +132,7 @@ DataLayer.prototype = {
 
         return null;
     },
+
 
     getNumberOfStoredItems: function () {
         return this.getAllJournalEntries().length;

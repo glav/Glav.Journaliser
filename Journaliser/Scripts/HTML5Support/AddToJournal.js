@@ -19,10 +19,7 @@ $(document).ready(function () {
         });
     }
 
-    function removeEntryFromLocalCache(entry, numEntriesLeftInLocalStore) {
-        debugger;
-        var dal = new DataLayer();
-        //todo. dal.removeitem....
+    function entryRemovedFromLocalCache(entry, numEntriesLeftInLocalStore) {
         var msg = "'Entry" + ": " + entry.Title + "' has been synchronised. There are " + numEntriesLeftInLocalStore + " entries left to synchronise";
         $("#sync-message span.status").text(msg).css("display", "block");
     }
@@ -41,10 +38,10 @@ $(document).ready(function () {
                     .click(function () {
                         $("#sync-message span.status").fadeIn();
                         dal.synchroniseWithServer(function (syncedEntry, numEntriesLeftInLocalStore) {
-                            removeEntryFromLocalCache(syncedEntry, numEntriesLeftInLocalStore);
+                            entryRemovedFromLocalCache(syncedEntry, numEntriesLeftInLocalStore);
                         }, function (err, entry, numEntriesLeftInLocalStore) {
                             if (err.status == 200 && err.statusText == "OK") {
-                                removeEntryFromLocalCache(entry,numEntriesLeftInLocalStore);
+                                entryRemovedFromLocalCache(entry, numEntriesLeftInLocalStore);
                             } else {
                                 alert(' sync failed');
                             }

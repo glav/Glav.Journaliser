@@ -14,6 +14,7 @@
     <AssemblyName>Journaliser</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,9 +40,6 @@
     </Reference>
     <Reference Include="Raven.Client.Lightweight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <HintPath>..\Dependencies\Raven.Client.Lightweight.dll</HintPath>
-    </Reference>
-    <Reference Include="ScriptDependencyExtension">
-      <HintPath>..\Dependencies\ScriptDependencyExtension.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages" />
@@ -83,9 +81,6 @@
     <Content Include="Offline\About.htm" />
     <Content Include="Offline\Fallback.htm" />
     <Content Include="Offline\Home.htm" />
-    <Content Include="ScriptDependencies.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Scripts\HTML5Support\AddToJournal.js" />
     <Content Include="Scripts\HTML5Support\CacheManager.js" />
     <Content Include="Scripts\HTML5Support\DataLayer.js" />

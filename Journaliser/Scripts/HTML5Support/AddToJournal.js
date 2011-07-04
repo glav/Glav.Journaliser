@@ -10,10 +10,12 @@ $(document).ready(function () {
 
     function bindAddJournalEntryButton() {
         $("#add-journal-entry").click(function () {
-            if (_netStatus.isOnline() === true) {
+            var loggedIn = ($("#login-status").val() === "LoggedIn");
+            if (_netStatus.isOnline() === true && loggedIn === true) {
                 $(this).submit();
             } else {
-                AddEntryToOfflineStorage();
+                addEntryToOfflineStorage();
+                refreshSyncMessageAndRedirectAddToJournalButton();
                 return false;
             }
         });
@@ -22,18 +24,23 @@ $(document).ready(function () {
     function entryRemovedFromLocalCache(entry, numEntriesLeftInLocalStore) {
         var msg = "'Entry" + ": " + entry.Title + "' has been synchronised. There are " + numEntriesLeftInLocalStore + " entries left to synchronise";
         $("#sync-message span.status").text(msg).css("display", "block");
+        if (numEntriesLeftInLocalStore == 0) {
+            refreshSyncMessageAndRedirectAddToJournalButton();
+        }
     }
 
-    function redirectAddToJournalButton(isOnline) {
+    function refreshSyncMessageAndRedirectAddToJournalButton() {
+        var isOnline = (_netStatus.isOnline() === true);
         var dal = new DataLayer();
+        var loggedIn = ($("#login-status").val() === "LoggedIn");
         var numItems = dal.getNumberOfStoredItems();
         if (numItems > 0) {
             $("#sync-message span.message")
                     .text("You have " + numItems + " items stored locally. You need to synchronise")
                     .css("color", "yellow");
-            if (isOnline === true) {
+            if (loggedIn === true) {
                 $("#sync-message a")
-                    .slideDown('slow')
+                    .slideDown()
                     .unbind()
                     .click(function () {
                         $("#sync-message span.status").fadeIn();
@@ -47,47 +54,34 @@ $(document).ready(function () {
                             }
                         });
                     });
-            } else {
-                $("#sync-message a")
-                            .unbind()
-                            .slideUp('slow');
             }
         } else {
-            $("#sync-message span")
+            $("#sync-message span.message")
                     .text("All items are synchronised.")
                     .css("color", "lime");
             $("#sync-message a")
                     .slideUp('slow')
                     .unbind();
-        }
-
-        if (isOnline === true) {
-            $("#add-journal-entry").unbind();
-        } else {
-            $("#add-journal-entry").unbind().click(function () {
-                var newEntity = JournalEntryModelCreator();
-
-                newEntity.BodyText = $("#BodyText").val();
-                newEntity.Title = $("#Title").val();
-
-                dal.storeJournalEntry(newEntity);
-
-                $("#Title").val("");
-                $("#BodyText").val("");
-
-                return false;
-            });
+            $("#sync-message span.status")
+                    .text("");
         }
     }
 
-    bindAddJournalEntryButton();
-    _netStatus.addNetworkStatusChangedHandler(function (args) {
+    function addEntryToOfflineStorage() {
+        var dal = new DataLayer();
+        var newEntity = JournalEntryModelCreator();
 
-        if (!args.hasError) {
-            redirectAddToJournalButton(args.isOnline);
-        } else {
-            alert('There was an error checking Network Status: ' + args.errorMessage);
-        }
-    });
+        newEntity.BodyText = $("#BodyText").val();
+        newEntity.Title = $("#Title").val();
+
+        dal.storeJournalEntry(newEntity);
+
+        $("#Title").val("");
+        $("#BodyText").val("");
+
+    }
+
+    bindAddJournalEntryButton();
+    refreshSyncMessageAndRedirectAddToJournalButton();
 
 });

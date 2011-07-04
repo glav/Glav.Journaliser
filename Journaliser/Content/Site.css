@@ -5,6 +5,9 @@
 .page {
     padding:10px 5px;
 }
+.hidden {
+    display:none !important;
+}
 
 #header {
 }
@@ -66,7 +69,7 @@
         border: 1px dotted white;
         list-style: none outside none;
         margin: auto;
-        width: 30%;
+        width: 40%;
     }
         #menucontainer ul li {
             display:inline;

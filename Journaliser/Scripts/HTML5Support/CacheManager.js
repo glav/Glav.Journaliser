@@ -2,47 +2,66 @@
 /// <reference path="RuntimeSettings.js" />
 
 function CacheManager() {
-    this._cache = null;
-
     if (window.applicationCache) {
-        this._cache = window.applicationCache;
         this._setupEventHandlers();
     }
 }
 
 CacheManager.prototype = {
     isCacheEnabled: function () {
-        return (this.cache !== null);
+        return (window.applicationCache);
+    },
+
+    _logMsg: function (msg) {
+        if (console) {
+            console.log(msg);
+        }
     },
 
     _setupEventHandlers: function () {
         var context = this;
-        this._cache.addEventListener("cached", function () {
-            console.log("All resources for this web app have now been downloaded. You can run this application while not connected to the internet");
+        window.applicationCache.addEventListener("cached", function () {
+            context._logMsg("All resources for this web app have now been downloaded. You can run this application while not connected to the internet");
         }, false);
-        this._cache.addEventListener("checking", function () {
-            console.log("Checking manifest");
+        window.applicationCache.addEventListener("checking", function () {
+            context._logMsg("Checking manifest");
         }, false);
-        this._cache.addEventListener("downloading", function () {
-            console.log("Starting download of cached files");
+        window.applicationCache.addEventListener("downloading", function () {
+            context._logMsg("Starting download of cached files");
         }, false);
-        this._cache.addEventListener("error", function (e) {
-            console.log("There was an error in the manifest, downloading cached files or you're offline: [" + e.type + " - " + (e.ERROR ? e.ERROR : "Unknown") + "]");
+        window.applicationCache.addEventListener("error", function (e) {
+            context._logMsg("There was an error in the manifest, downloading cached files or you're offline: [" + e.type + " - " + (e.ERROR ? e.ERROR : "Unknown") + "]");
         }, false);
-        this._cache.addEventListener("noupdate", function () {
-            console.log("There was no update needed");
+        window.applicationCache.addEventListener("noupdate", function () {
+            context._logMsg("There was no update needed");
         }, false);
-        this._cache.addEventListener("progress", function () {
-            console.log("Downloading cached files");
+        window.applicationCache.addEventListener("progress", function () {
+            context._logMsg("Downloading cached files");
         }, false);
-        this._cache.addEventListener("updateready", function () {
-            context._cache.swapCache();
-            console.log("Updated cache is ready");
-            // Even after swapping the cache the currently loaded page won't use it
-            // until it is reloaded, so force a reload so it is current.
-            window.location.reload(true);
-            console.log("Window reloaded");
+        window.applicationCache.addEventListener("updateready", function () {
+            context._logMsg("Updated cache is ready");
+            context.kickCache();
         }, false);
+    },
+
+    kickCache: function () {
+        if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+            // can only do  this when the cache is in the UPDATEREADY state
+            window.applicationCache.update();
+            this._logMsg("cache updated");
+            try {
+                window.applicationCache.swapCache();
+                this._logMsg("cache swapped");
+            } catch (err) {
+                // this function is very finicky and often throws DOM errors even though the state is UPDATREADY
+                this._logMsg("could not swap out cache [" + err + "]");
+            }
+        }
+
+        // Even after swapping the cache the currently loaded page won't use it
+        // until it is reloaded, so force a reload so it is current.
+        window.location.reload(true);
+        this._logMsg("Window reloaded");
     }
 
 }

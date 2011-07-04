@@ -33,9 +33,6 @@ namespace Journaliser.Logic.Data
 
         public string AddDocument<T>(T entry) where T : IBaseDocument
         {
-            Contract.Requires<ArgumentNullException>(entry != null);
-            Contract.Requires<ArgumentNullException>(!string.IsNullOrWhiteSpace(entry.Owner));
-
             using (var context = _documentStore.OpenSession())
             {
                 entry.CreatedDate = DateTime.Now;

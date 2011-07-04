@@ -2,7 +2,7 @@
 /// <reference path="RuntimeSettings.js" />
 
 
-function NetworkStatus(timeoutInMilliseconds) {
+function NetworkStatus(timeoutInMilliseconds, cacheManager) {
     /// <summary>
     /// This class will handle the checking of network status for offline and online mode as well
     /// as detecting support for the cache
@@ -13,7 +13,10 @@ function NetworkStatus(timeoutInMilliseconds) {
         return;
     }
 
-    this._cache = null;
+    this._cacheMgr = null;
+    if (cacheManager) {
+        this._cacheMgr = cacheManager;
+    }
     this._isOnline = true;
     this._initialised = false;
     this._timeout = 5000;
@@ -123,7 +126,9 @@ NetworkStatus.prototype = {
                 cache: false,
                 dataType: "json",
                 error: function (req, status, ex) {
-                    console.log("Error: " + ex + ", Status Text:" + status);
+                    if (console) {
+                        console.log("Error: " + ex + ", Status Text:" + status);
+                    }
                     // We might not be technically "offline" if the error is not a timeout, but
                     // otherwise we're getting some sort of error when we shouldn't, so we're
                     // going to treat it as if we're offline.
@@ -176,7 +181,9 @@ NetworkStatus.prototype = {
         this.setTimeoutInMillseconds(settings.timeout);
         this._pingUrl = settings.pingUrl;
 
-        // bind our events
+        // **********************************
+        // bind ONLINE and OFFLINE DOM events
+        // **********************************
         if (this._initialised === false) {
             $(document.body).bind("online", function (e) {
                 context._checkNetworkStatus.apply(context, []);

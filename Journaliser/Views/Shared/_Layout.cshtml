@@ -41,7 +41,7 @@
             <div id="menucontainer">
 
                 <ul id="menu">
-                    <li class="@Journaliser.Models.Pages.Home">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "cache-link" })</li>
+                    <li class="@Journaliser.Models.Pages.Home">@Html.ActionLink("Home", "Index", "Home")</li>
 
                     @if (!Request.IsAuthenticated)
                     {

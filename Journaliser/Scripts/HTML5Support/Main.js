@@ -10,8 +10,8 @@ var _netStatus = new NetworkStatus(5000,_cacheManager);
 
 $(document).ready(function () {
 
-    var offlineLinks = ["offline/Home.htm", "offline/About.htm", "offline/Home.htm"];
-    var onlineLinks = ["", "Home/About","Account/LogOn"];
+    var offlineLinks = ["offline/About.htm", "offline/Home.htm"];
+    var onlineLinks = ["Home/About","Account/LogOn"];
 
     function mapLinks(status) {
         var arrLen = offlineLinks.length;

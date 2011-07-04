@@ -1,7 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Journaliser.Logic.Data;
 using Journaliser.Logic.Domain.Model;
 using Journaliser.Logic.Domain.Security;
+using System.Web.Helpers;
 
 namespace Journaliser.Controllers
 {
@@ -20,7 +22,6 @@ namespace Journaliser.Controllers
         //
         // GET: /Journal/
 
-        [Authorize]
         public ActionResult AddToJournal()
         {
             JournalEntry entry = new JournalEntry();
@@ -45,20 +46,22 @@ namespace Journaliser.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult SyncJournal(JournalEntry entry)
+        public JsonResult SyncJournal(JournalEntry entry)
         {
             if (ModelState.IsValid ||
                 (!ModelState.IsValid && CheckForValidityInOfflineObject(entry) == true))
             {
-                entry.Owner = _identitySvc.GetCurrentUsername();
+            	var oldId = entry.Id;
+				entry.Id = Guid.NewGuid().ToString();
+            	entry.Owner = _identitySvc.GetCurrentUsername();
                 _repository.AddDocument<JournalEntry>(entry);
                 ViewBag.SyncResult = "OK";
-                return View("AddToJournalSyncResult");
+				return Json(new { WasSuccessful = true, entryId = oldId});
             }
             else
             {
                 ViewBag.SyncResult = "ERROR";
-                return View("AddToJournalSyncResult");
+				return Json(new { WasSuccessful = false });
             }
         }
 

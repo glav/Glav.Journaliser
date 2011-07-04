@@ -52,29 +52,37 @@ DataLayer.prototype = {
         }
     },
 
-    syncSuccessCallbackProxy: function (syncedEntry, successCallback) {
-        this.deleteJournalEntry(syncedEntry.Id);
-        var allEntries = this.getAllJournalEntries();
-        successCallback(entry, allEntries.length);
+    syncSuccessCallbackProxy: function (status, syncedEntry, successCallback) {
+        if (status.WasSuccessful === true) {
+            var returnedId = parseInt(status.entryId, 10);
+            console.log("id: " + returnedId + " , entry: " + syncedEntry.Title);
+
+            this.deleteJournalEntry(returnedId);
+
+            //this.deleteJournalEntry(syncedEntry.Id);
+            var allEntries = this.getAllJournalEntries();
+            successCallback(syncedEntry, allEntries.length);
+        }
     },
 
-    syncErrorCallbackProxy: function (e, syncedEntry, errorCallback) {
-        this.deleteJournalEntry(syncedEntry.Id);
+    syncErrorCallbackProxy: function (e, entry, errorCallback) {
+        //this.deleteJournalEntry(syncedEntry.Id);
         var allEntries = this.getAllJournalEntries();
-        errorCallback(e, syncedEntry, allEntries.length);
+        errorCallback(e, entry, allEntries.length);
     },
 
     synchroniseWithServer: function (successCallback, errorCallback) {
         var $this = this;
         var thisErrorCallback = errorCallback;
         var allEntries = this.getAllJournalEntries();
-        for (var cnt = 0; cnt < allEntries.length; cnt++) {
+        var numEntries = allEntries.length;
+        for (var cnt = 0; cnt < numEntries; cnt++) {
             var entry = allEntries[cnt];
-
+            console.log("before ajax - cnt: " + cnt + ", id: " + entry.Id);
             $.ajax({
-                url: "SyncJournal",
+                url: _runtime.rootPath + "Journal/SyncJournal",
                 type: "POST",
-                success: function (entry, successCallback) { $this.syncSuccessCallbackProxy(entry, successCallback); },
+                success: function (e) { $this.syncSuccessCallbackProxy(e, entry, successCallback); },
                 error: function (e) { $this.syncErrorCallbackProxy(e, entry, thisErrorCallback); },
                 data: entry
             });

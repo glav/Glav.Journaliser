@@ -5,13 +5,13 @@
 /// <reference path="CacheManager.js" />
 /// <reference path="NetworkStatus.js" />
 
-var _netStatus = new NetworkStatus();
 var _cacheManager = new CacheManager();
+var _netStatus = new NetworkStatus(5000,_cacheManager);
 
 $(document).ready(function () {
 
-    var offlineLinks = ["offline/Home.htm", "offline/About.htm"];
-    var onlineLinks = ["", "Home/About"];
+    var offlineLinks = ["offline/Home.htm", "offline/About.htm", "offline/Home.htm"];
+    var onlineLinks = ["", "Home/About","Account/LogOn"];
 
     function mapLinks(status) {
         var arrLen = offlineLinks.length;

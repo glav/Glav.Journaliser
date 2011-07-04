@@ -5,3 +5,8 @@
 else {
     @:[ @Html.ActionLink("Sign In", "LogOn", "Account") ]
 }
+
+@{
+    var loginStatus = Request.IsAuthenticated ? "LoggedIn" : "LoggedOut";
+}
+<input id="login-status" type="hidden" value="@loginStatus" />

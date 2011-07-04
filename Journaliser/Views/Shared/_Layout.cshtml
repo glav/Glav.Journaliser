@@ -1,10 +1,17 @@
 ﻿<!DOCTYPE html>
-<html manifest="/Journaliser/cache.manifest">
+<html manifest="@Url.Content("~/cache.manifest")">
 <head>
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.4.2.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/HTML5Support/RuntimeSettings.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/HTML5Support/CacheManager.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/HTML5Support/NetworkStatus.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/HTML5Support/DataLayer.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/HTML5Support/AddToJournal.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/HTML5Support/Main.js")"></script>
     @Journaliser.Helpers.JsonHelper.WriteJournalEntryJsonDefintion()
-    @ScriptDependencyExtension.ScriptHelper.RequiresScripts("jQuery-validate-unobtrusive","Main","AddToJournal")
     
 </head>
 
@@ -34,18 +41,14 @@
             <div id="menucontainer">
 
                 <ul id="menu">
-                    <li class="@Journaliser.Models.Pages.Home">@Html.ActionLink("Home", "Index", "Home",null, new { @class = "cache-link"} )</li>
-                    @{
-                        if (Request.IsAuthenticated) 
-                        { 
-                            <text><li class="@Journaliser.Models.Pages.AddToJournal">@Html.ActionLink("Add to your Journal","AddToJournal","Journal")</li></text> 
-                        }
-                        if (!Request.IsAuthenticated)
-                        { 
-                            <text><li class="@Journaliser.Models.Pages.SignIn">@Html.ActionLink("Sign In", "LogOn", "Account")</li></text> 
-                        }
+                    <li class="@Journaliser.Models.Pages.Home">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "cache-link" })</li>
+
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <li class="@Journaliser.Models.Pages.SignIn">@Html.ActionLink("Sign In", "LogOn", "Account", null, new { @class = "cache-link" })</li>
                     }
-                    
+                    @*Always show the add to journal link*@
+                    <li class="@Journaliser.Models.Pages.AddToJournal">@Html.ActionLink("Add to your Journal","AddToJournal","Journal")</li>
                     <li class="@Journaliser.Models.Pages.About">@Html.ActionLink("About", "About", "Home", null, new { @class = "cache-link" })</li>
                 </ul>
 

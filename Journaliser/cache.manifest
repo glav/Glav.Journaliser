@@ -2,42 +2,39 @@
 
 #Journaliser manifest file
 
-CACHE:
-
 # This section below gets the offline mode working as expected. Everything that is needed is cached, 
 # including the CSS and Javascript and JS continues to execute as expected. If we dont list the files
 # to be cached here, they get cached once visited however to get a truly offline experience, we should
 # pro-actively cache them by explicitly specifiying them.
-http://localhost/Journaliser/Content/Site.css
-http://localhost/Journaliser/
-http://localhost/Journaliser/offline/Home.htm
-http://localhost/Journaliser/offline/About.htm
-http://localhost/Journaliser/offline/Fallback.htm
-http://localhost/Journaliser/Home/About
-http://localhost/Journaliser/Account/LogOn
-http://localhost/Journaliser/Scripts/jquery-1.4.2.js
-http://localhost/Journaliser/Scripts/HTML5Support/NetworkStatus.js
-http://localhost/Journaliser/Scripts/HTML5Support/RuntimeSettings.js
-http://localhost/Journaliser/Scripts/HTML5Support/DataLayer.js
-http://localhost/Journaliser/Scripts/HTML5Support/Main.js
-http://localhost/Journaliser/Scripts/HTML5Support/CacheManager.js
 
-# Note: This section below sort of works, however when the browser wants one of these resources,
-# it seems to only get a cache hit if the URL of the resource it was going to get is explicitly
-# listed as per the above section. So the section below seems to cache the pages, but not the CSS
-# or the Javascript
-/Journaliser/offline/Home.htm
-/Journaliser/offline/About.htm
-/Journaliser/scripts/jquery-1.4.2.js
-/Journaliser/scripts/HTML5Support/NetworkStatus.js
-/Journaliser/scripts/HTML5Support/DataLayer.js
-/Journaliser/scripts/HTML5Support/RuntimeSettings.js
-/Journaliser/scripts/HTML5Support/CacheManager.js
-/Journaliser/scripts/HTML5Support/Main.js
-/Journaliser/content/Site.css
+CACHE:
+#v0.15
+
+http://localhost/Journaliser
+Journal/AddToJournal
+Home/About
+
+Content/Site.css
+offline/Home.htm
+offline/About.htm
+offline/Fallback.htm
+Scripts/jquery-1.4.2.js
+Scripts/HTML5Support/NetworkStatus.js
+Scripts/HTML5Support/RuntimeSettings.js
+Scripts/HTML5Support/DataLayer.js
+Scripts/HTML5Support/Main.js
+Scripts/HTML5Support/CacheManager.js
+Scripts/HTML5Support/AddToJournal.js
+Scripts/jQuery.validate.js
+Scripts/jquery.validate.unobtrusive.js
+
 
 NETWORK:
-scripts/ping.js
+Scripts/ping.js
+Account/LogOn
+http://localhost/Journaliser/Account/LogOn
 
 FALLBACK:
-offline/Fallback.htm
+http://localhost/Journaliser offline/Fallback.htm
+Home offline/Fallback.htm
+

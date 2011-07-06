@@ -48,7 +48,9 @@
                         <li class="@Journaliser.Models.Pages.SignIn">@Html.ActionLink("Sign In", "LogOn", "Account", null, new { @class = "cache-link" })</li>
                     }
                     @*Always show the add to journal link*@
-                    <li class="@Journaliser.Models.Pages.AddToJournal">@Html.ActionLink("Add to your Journal","AddToJournal","Journal")</li>
+                    <li class="@Journaliser.Models.Pages.AddToJournal">@Html.ActionLink("Add Entry","AddToJournal","Journal")</li>
+                    <li class="@Journaliser.Models.Pages.ListJournals">@Html.ActionLink("List Entries","ListJournals","Journal", null, new { @class = "cache-link" })</li>
+                    
                     <li class="@Journaliser.Models.Pages.About">@Html.ActionLink("About", "About", "Home", null, new { @class = "cache-link" })</li>
                 </ul>
 

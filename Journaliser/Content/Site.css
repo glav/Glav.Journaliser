@@ -126,3 +126,20 @@
 .validation-summary-errors ul li {
     color:Red;
 }
+
+/****************************
+*** List Journals ***********
+*****************************/
+#journal-list {
+    width:90%;
+}
+
+#journal-list th {
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+#journal-list td {
+    font-weight:normal;
+    text-align:center;
+}

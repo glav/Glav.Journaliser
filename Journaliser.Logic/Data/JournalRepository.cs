@@ -5,7 +5,6 @@ using System.Text;
 using Journaliser.Logic.Domain.Model;
 using Raven.Client;
 using Journaliser.Logic.Properties;
-using System.Diagnostics.Contracts;
 
 namespace Journaliser.Logic.Data
 {
@@ -22,7 +21,6 @@ namespace Journaliser.Logic.Data
         }
         public T GetDocument<T>(string id) where T : IBaseDocument
         {
-            Contract.Requires<ArgumentNullException>(!string.IsNullOrWhiteSpace(id));
 
             using (var context = _documentStore.OpenSession())
             {
@@ -57,9 +55,6 @@ namespace Journaliser.Logic.Data
 
         public void DeleteDocument<T>(T entry) where T : IBaseDocument
         {
-            Contract.Requires<ArgumentNullException>(entry != null);
-            Contract.Requires<ArgumentNullException>(!string.IsNullOrWhiteSpace(entry.Owner));
-
             using (var context = _documentStore.OpenSession())
             {
                 if (entry != null)
@@ -72,8 +67,6 @@ namespace Journaliser.Logic.Data
 
         public void DeleteDocument<T>(string id) where T : IBaseDocument
         {
-            Contract.Requires<ArgumentNullException>(!string.IsNullOrWhiteSpace(id));
-
             using (var context = _documentStore.OpenSession())
             {
                 var entry = context.Load<T>(id);

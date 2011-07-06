@@ -33,8 +33,11 @@ namespace Journaliser.Logic.Data
         {
             using (var context = _documentStore.OpenSession())
             {
-                entry.CreatedDate = DateTime.Now;
-                entry.ModifiedDate = null;
+				if (entry.CreatedDate == DateTime.MinValue)
+				{
+					entry.CreatedDate = DateTime.Now;
+				}
+            	entry.ModifiedDate = null;
                 context.Store(entry);
                 context.SaveChanges();
                 return entry.Id;

@@ -4,6 +4,9 @@
     ViewBag.Title = "ListJournals";
 }
 
+<input type="hidden" id="page-id" value="@Journaliser.Models.Pages.ListJournals" />
+
+
 <h2>Journal List</h2>
 
 <table id="journal-list">
@@ -27,7 +30,7 @@
                     @{
                 var deleteLink = string.Format("{0}?id={1}", Url.Content("~/Journal/Delete"), entry.Id);
                         }
-                    <td class="action-delete"><a href="@deleteLink">Delete</a></td>
+                    <td class="action-delete"><a href="@deleteLink"><img src="@Url.Content("~/Content/images/cross_red.gif")" alt="Delete" title="Delete" /></a></td>
                 </tr>
             }
         }

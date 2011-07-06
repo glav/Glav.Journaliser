@@ -73,6 +73,7 @@ $(document).ready(function () {
 
         newEntity.BodyText = $("#BodyText").val();
         newEntity.Title = $("#Title").val();
+        newEntity.CreatedDate = new Date();
 
         dal.storeJournalEntry(newEntity);
 

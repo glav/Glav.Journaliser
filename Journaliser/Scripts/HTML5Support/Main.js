@@ -41,6 +41,12 @@ $(document).ready(function () {
                     .removeClass("status-offline")
                     .text("Online");
         $("#logindisplay").slideDown('slow');
+        var dal = new DataLayer();
+        var numEntries = dal.getAllJournalEntries();
+        var loggedIn = ($("#login-status").val() === "LoggedIn");
+        if (numEntries.length > 0 && loggedIn === true) {
+            $("#sync-message a").slideDown();
+        }
         mapLinks('online');
     }
 
@@ -50,6 +56,7 @@ $(document).ready(function () {
                     .removeClass("status-online")
                     .text("Offline");
         $("#logindisplay").slideUp('slow');
+        $("#sync-message a").slideUp();
         mapLinks('offline');
     }
 

@@ -136,10 +136,15 @@
 
 #journal-list th {
     font-weight:bold;
-    text-decoration:underline;
 }
 
-#journal-list td {
-    font-weight:normal;
-    text-align:center;
-}
+    #journal-list td {
+        font-weight:normal;
+        text-align:center;
+    }
+    #journal-list thead th {
+        border-bottom:1px solid silver;
+    }
+    #journal-list tbody td {
+        border-bottom:1px dotted silver;
+    }

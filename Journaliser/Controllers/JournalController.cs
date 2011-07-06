@@ -44,6 +44,27 @@ namespace Journaliser.Controllers
             }
         }
 
+		[Authorize]
+		public ActionResult Delete(string id)
+		{
+			if (id != null)
+			{
+				_repository.DeleteDocument<JournalEntry>(id.ToString());
+				var entries = _repository.GetEntriesByCreationDate<JournalEntry>(DateTime.Now.AddDays(-2),
+				                                                                 DateTime.Now, 20);
+				return View("ListJournals",entries);
+			}
+
+			return View();
+		}
+
+		public ActionResult ListJournals()
+		{
+			var entries = _repository.GetEntriesByCreationDate<JournalEntry>(DateTime.Now.AddDays(-2),
+			                                                   DateTime.Now, 20);
+			return View(entries);
+		}
+
         [HttpPost]
         [Authorize]
         public JsonResult SyncJournal(JournalEntry entry)
@@ -52,7 +73,7 @@ namespace Journaliser.Controllers
                 (!ModelState.IsValid && CheckForValidityInOfflineObject(entry) == true))
             {
             	var oldId = entry.Id;
-				entry.Id = Guid.NewGuid().ToString();
+            	entry.Id = null;
             	entry.Owner = _identitySvc.GetCurrentUsername();
                 _repository.AddDocument<JournalEntry>(entry);
                 ViewBag.SyncResult = "OK";

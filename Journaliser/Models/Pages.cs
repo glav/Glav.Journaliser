@@ -8,5 +8,6 @@ namespace Journaliser.Models
         public const string Home = "home";
         public const string About = "about";
         public const string AddToJournal = "addtojournal";
+    	public const string ListJournals = "listjournals";
     }
 }

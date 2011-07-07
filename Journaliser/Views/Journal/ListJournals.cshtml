@@ -15,6 +15,10 @@
             <th class="title">Title</th>
             <th class="created">Created</th>
             <th class="body-text">Body</th>
+
+@*          -- New Field/Property 
+           <th>New</th>
+*@
             <th class="action-delete"></th>
         </tr>
     </thead>
@@ -27,6 +31,11 @@
                     <td class="title">@entry.Title</td>
                     <td class="created">@entry.CreatedDate</td>
                     <td class="body-text">@entry.BodyText</td>
+
+@*                  ---new field/property  
+                    <td>@entry.NewField</td>
+*@
+
                     @{
                 var deleteLink = string.Format("{0}?id={1}", Url.Content("~/Journal/Delete"), entry.Id);
                         }

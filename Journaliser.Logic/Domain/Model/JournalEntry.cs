@@ -11,5 +11,7 @@ namespace Journaliser.Logic.Domain.Model
         public JournalEntryVisibility Visibility {get; set;}
         public DateTime? LastModifiedDate { get; set; }
         public string BodyText { get; set; }
+
+		//public string NewField { get; set; }
     }
 }

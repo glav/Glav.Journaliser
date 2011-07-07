@@ -75,6 +75,9 @@ $(document).ready(function () {
         newEntity.Title = $("#Title").val();
         newEntity.CreatedDate = new Date();
 
+        //***New property
+        //newEntity.NewField = $("#NewField").val();
+
         dal.storeJournalEntry(newEntity);
 
         $("#Title").val("");

@@ -60,6 +60,17 @@
                 @Html.ValidationMessageFor(model => model.BodyText)
             </div>
         </div>
+
+@*   --- New Property/Field
+        <div class="field-data">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.NewField)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.NewField)
+            </div>
+        </div>
+*@
         <p>
             <input id="add-journal-entry" type="submit" value="Create" />
         </p>

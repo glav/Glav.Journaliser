@@ -60,6 +60,7 @@ CacheManager.prototype = {
 
         // Even after swapping the cache the currently loaded page won't use it
         // until it is reloaded, so force a reload so it is current.
+        alert("Application cache was refreshed. About to do a page reload.");
         window.location.reload(true);
         this._logMsg("Window reloaded");
     }

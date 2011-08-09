@@ -8,33 +8,29 @@
 # pro-actively cache them by explicitly specifiying them.
 
 CACHE:
-#v0.15
+#v0.20
 
-http://localhost/Journaliser
-Journal/AddToJournal
-Home/About
+/Journaliser
+/Journaliser/Journal/AddToJournal
+/Journaliser/Home/About
 
-Content/Site.css
-offline/Home.htm
-offline/About.htm
-offline/Fallback.htm
-Scripts/jquery-1.4.2.js
-Scripts/HTML5Support/NetworkStatus.js
-Scripts/HTML5Support/RuntimeSettings.js
-Scripts/HTML5Support/DataLayer.js
-Scripts/HTML5Support/Main.js
-Scripts/HTML5Support/CacheManager.js
-Scripts/HTML5Support/AddToJournal.js
-Scripts/jQuery.validate.js
-Scripts/jquery.validate.unobtrusive.js
+/Journaliser/Content/Site.css
+/Journaliser/offline/Home.htm
+/Journaliser/offline/About.htm
+/Journaliser/Scripts/jquery-1.4.2.js
+/Journaliser/Scripts/HTML5Support/NetworkStatus.js
+/Journaliser/Scripts/HTML5Support/RuntimeSettings.js
+/Journaliser/Scripts/HTML5Support/DataLayer.js
+/Journaliser/Scripts/HTML5Support/Main.js
+/Journaliser/Scripts/HTML5Support/CacheManager.js
+/Journaliser/Scripts/HTML5Support/AddToJournal.js
+/Journaliser/Scripts/jQuery.validate.js
+/Journaliser/Scripts/jquery.validate.unobtrusive.js
 
 
 NETWORK:
-Scripts/ping.js
-Account/LogOn
-http://localhost/Journaliser/Account/LogOn
+/Journaliser/Scripts/ping.js
+/Journaliser/Account/LogOn
 
 FALLBACK:
-http://localhost/Journaliser offline/Fallback.htm
-Home offline/Fallback.htm
-
+/ /Journaliser/Offline/Fallback.htm

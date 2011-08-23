@@ -8,7 +8,7 @@
 # pro-actively cache them by explicitly specifiying them.
 
 CACHE:
-#v0.20
+#v0.21
 
 /Journaliser
 /Journaliser/Journal/AddToJournal
@@ -24,8 +24,6 @@ CACHE:
 /Journaliser/Scripts/HTML5Support/Main.js
 /Journaliser/Scripts/HTML5Support/CacheManager.js
 /Journaliser/Scripts/HTML5Support/AddToJournal.js
-/Journaliser/Scripts/jQuery.validate.js
-/Journaliser/Scripts/jquery.validate.unobtrusive.js
 
 
 NETWORK:

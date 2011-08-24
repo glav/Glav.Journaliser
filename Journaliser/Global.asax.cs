@@ -48,6 +48,8 @@ namespace Journaliser
 
             // Create a single document store object to use for resolution
             kernel.Bind<IRepositoryFactory>().To<RepositoryFactory>().InSingletonScope();
+
+			// Somewhat redundant ..I know
             var docStore = DependencyResolver.Current.GetService<IRepositoryFactory>().CreateDocumentStore();
             kernel.Bind<IDocumentStore>().ToConstant(docStore);
 

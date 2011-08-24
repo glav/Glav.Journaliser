@@ -8,7 +8,7 @@
 # pro-actively cache them by explicitly specifiying them.
 
 CACHE:
-#v0.21
+#v0.22
 
 /Journaliser
 /Journaliser/Journal/AddToJournal
@@ -32,3 +32,4 @@ NETWORK:
 
 FALLBACK:
 / /Journaliser/Offline/Fallback.htm
+

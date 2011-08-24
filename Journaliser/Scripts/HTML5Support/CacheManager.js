@@ -35,7 +35,7 @@ CacheManager.prototype = {
         window.applicationCache.addEventListener("noupdate", function () {
             context._logMsg("There was no update needed");
         }, false);
-        window.applicationCache.addEventListener("progress", function () {
+        window.applicationCache.addEventListener("progress", function (e) {
             context._logMsg("Downloading cached files");
         }, false);
         window.applicationCache.addEventListener("updateready", function () {

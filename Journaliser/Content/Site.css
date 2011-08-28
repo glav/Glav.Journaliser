@@ -15,7 +15,7 @@
 #title {
     margin:auto;
     text-align:center;
-    width:40%;
+    width:50%;
     background-color:#FFFFFF;
     border:1px solid blue;
     border-radius:10px;
@@ -63,6 +63,8 @@
 #menucontainer {
     margin: auto;
     text-align: center;
+    width:1010px;
+    font-size: 0.93em;
 }
     #menucontainer ul {
         -moz-border-radius: 5px 5px 5px 5px;

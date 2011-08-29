@@ -186,9 +186,11 @@ NetworkStatus.prototype = {
         // **********************************
         if (this._initialised === false) {
             $(document.body).bind("online", function (e) {
+                window.location.reload(true);
                 context._checkNetworkStatus.apply(context, []);
             });
             $(document.body).bind("offline", function (e) {
+                context._fireStatusChangedEvent(false);
                 context._checkNetworkStatus.apply(context, []);
             });
             this._initialised = true;

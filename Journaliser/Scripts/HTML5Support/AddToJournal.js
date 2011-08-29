@@ -38,7 +38,7 @@ $(document).ready(function () {
             $("#sync-message span.message")
                     .text("You have " + numItems + " items stored locally. You need to synchronise")
                     .css("color", "yellow");
-            if (loggedIn === true) {
+            if (loggedIn === true && isOnline === true) {
                 $("#sync-message a")
                     .slideDown()
                     .unbind()

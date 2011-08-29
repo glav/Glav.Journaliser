@@ -12,8 +12,6 @@ CACHE:
 
 /Journaliser
 /Journaliser/Journal/AddToJournal
-/Journaliser/Home/About
-
 /Journaliser/Content/Site.css
 /Journaliser/offline/Home.htm
 /Journaliser/offline/About.htm
@@ -29,6 +27,7 @@ CACHE:
 NETWORK:
 /Journaliser/Scripts/ping.js
 /Journaliser/Account/LogOn
+/Journaliser/Journal/ListJournals
 
 FALLBACK:
 / /Journaliser/Offline/Fallback.htm

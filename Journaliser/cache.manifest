@@ -8,7 +8,7 @@
 # pro-actively cache them by explicitly specifiying them.
 
 CACHE:
-#v0.22
+#v0.24
 
 /Journaliser
 /Journaliser/Journal/AddToJournal

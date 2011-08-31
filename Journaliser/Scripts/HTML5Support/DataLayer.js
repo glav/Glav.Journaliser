@@ -5,7 +5,8 @@ function DataLayer() {
     this._storage = null;
 
     try {
-        this._storageEnabled = ('localStorage' in window && window['localStorage'] !== null);
+        var undefined;
+        this._storageEnabled = (('localStorage' in window !==null) && (window['localStorage'] !== undefined));
     } catch (e) {
         this._storageEnabled = false;
     }
